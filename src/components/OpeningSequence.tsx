@@ -8,10 +8,12 @@ type Step = {
 };
 
 const STEPS: Step[] = [
-  { kicker: "JAPAN / ARCHIVE / 2026", hold: 2600 },
-  { title: "YAKUZA", hold: 3000 },
-  { line: "A HISTÓRIA POR TRÁS DO CRIME ORGANIZADO JAPONÊS", hold: 3000 },
-  { line: "DOCUMENTÁRIO INTERATIVO", hold: 2400 },
+  { title: "QUÍMICA", hold: 2400 },
+  { title: "ORGÂNICA", hold: 2400 },
+  { kicker: "2026", hold: 1800 },
+  { line: "FUNÇÕES ORGÂNICAS", hold: 2400 },
+  { line: "FENOL & ENOL", hold: 2400 },
+  { line: "DOCUMENTÁRIO / APRESENTAÇÃO INTERATIVA", hold: 2600 },
 ];
 
 function prefersReducedMotion() {
