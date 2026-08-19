@@ -38,9 +38,9 @@ export function ProfileGate() {
     <main className="paper-grain relative min-h-screen bg-ink">
       <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-5xl flex-col justify-center px-5 py-16 sm:px-8">
         <header className="mb-12 text-center sm:mb-16">
-          <p className="kicker">Japan / Archive / 2026</p>
+          <p className="kicker">Química Orgânica / Laboratório / 2026</p>
           <h1 className="mt-6 font-display text-3xl tracking-[0.18em] text-foreground sm:text-5xl">
-            QUEM ESTÁ ASSISTINDO?
+            QUEM ESTÁ APRESENTANDO?
           </h1>
           <div className="hairline mx-auto mt-8 max-w-xs" />
         </header>
