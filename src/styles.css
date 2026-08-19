@@ -159,8 +159,8 @@
   width: 100%;
   background: linear-gradient(
     90deg,
-    color-mix(in oklab, var(--color-gold) 40%, transparent),
-    color-mix(in oklab, var(--color-gold) 12%, transparent) 45%,
+    color-mix(in oklab, var(--color-cyan) 55%, transparent),
+    color-mix(in oklab, var(--color-deep) 30%, transparent) 45%,
     transparent
   );
 }
@@ -173,7 +173,7 @@
 }
 
 
-/* Subtle washi paper texture over black */
+/* Faint scientific grid + laboratory light wash */
 @utility paper-grain {
   position: relative;
   &::after {
@@ -181,37 +181,55 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.35;
+    opacity: 0.5;
     background-image:
       radial-gradient(
-        circle at 20% 10%,
-        color-mix(in oklab, var(--color-blood) 22%, transparent),
+        circle at 18% 8%,
+        color-mix(in oklab, var(--color-deep) 26%, transparent),
+        transparent 58%
+      ),
+      radial-gradient(
+        circle at 84% 92%,
+        color-mix(in oklab, var(--color-cyan) 12%, transparent),
         transparent 55%
       ),
-      repeating-linear-gradient(
+      linear-gradient(
         0deg,
-        oklch(1 0 0 / 2.2%) 0px,
-        oklch(1 0 0 / 2.2%) 1px,
+        color-mix(in oklab, var(--color-paper) 3%, transparent) 0px,
+        color-mix(in oklab, var(--color-paper) 3%, transparent) 1px,
         transparent 1px,
-        transparent 3px
+        transparent 44px
+      ),
+      linear-gradient(
+        90deg,
+        color-mix(in oklab, var(--color-paper) 3%, transparent) 0px,
+        color-mix(in oklab, var(--color-paper) 3%, transparent) 1px,
+        transparent 1px,
+        transparent 44px
       );
   }
 }
 
-/* Faint ukiyo-e style wave arcs */
+/* Faint molecular bond rings, low intensity */
 @utility wave-marks {
   background-image:
     radial-gradient(
-      120% 60% at 50% 130%,
-      transparent 58%,
-      color-mix(in oklab, var(--color-foreground) 6%, transparent) 58.4%,
-      transparent 59.2%
+      circle at 12% 78%,
+      transparent 5.6%,
+      color-mix(in oklab, var(--color-cyan) 14%, transparent) 5.7%,
+      transparent 6.1%
     ),
     radial-gradient(
-      150% 70% at 50% 145%,
-      transparent 58%,
-      color-mix(in oklab, var(--color-foreground) 4%, transparent) 58.4%,
-      transparent 59.2%
+      circle at 88% 22%,
+      transparent 4.2%,
+      color-mix(in oklab, var(--color-chem) 12%, transparent) 4.3%,
+      transparent 4.7%
+    ),
+    radial-gradient(
+      circle at 50% 118%,
+      transparent 26%,
+      color-mix(in oklab, var(--color-foreground) 5%, transparent) 26.2%,
+      transparent 26.6%
     );
 }
 
