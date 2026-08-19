@@ -72,7 +72,8 @@ export function OpeningSequence({ onFinish }: { onFinish: () => void }) {
       }`}
     >
       <p aria-live="polite" className="sr-only">
-        YAKUZA ARCHIVE — documentário interativo sobre o crime organizado japonês.
+        Química Orgânica — apresentação interativa sobre funções orgânicas, grupo
+        funcional, nomenclatura, aplicações, fenol e enol.
       </p>
 
       <div className="relative z-10 flex min-h-[9rem] w-full max-w-3xl items-center justify-center sm:min-h-[12rem]">
