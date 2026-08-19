@@ -1,0 +1,64 @@
+import avatar1 from "@/assets/avatar-1.jpg";
+import avatar2 from "@/assets/avatar2.png";
+import avatar3 from "@/assets/avatar3.png";
+import avatar4 from "@/assets/avatar4.png";
+
+export type Profile = {
+  id: string;
+  name: string;
+  image: string;
+};
+
+export const PROFILES_KEY = "yakuza-archive:profiles";
+export const SELECTED_KEY = "yakuza-archive:selected-profile";
+export const INTRO_KEY = "yakuza-archive:intro-seen";
+
+export const defaultProfiles: Profile[] = [
+  { id: "p1", name: "Henrique", image: avatar1 },
+  { id: "p2", name: "Matheus Caio", image: avatar2 },
+  { id: "p3", name: "Victor Antonio", image: avatar3 },
+  { id: "p4", name: "Kaynã", image: avatar4 },
+];
+
+export function loadProfiles(): Profile[] {
+  if (typeof window === "undefined") return defaultProfiles;
+  try {
+    const raw = window.localStorage.getItem(PROFILES_KEY);
+    if (!raw) return defaultProfiles;
+    const parsed = JSON.parse(raw) as Profile[];
+    if (!Array.isArray(parsed) || parsed.length === 0) return defaultProfiles;
+    return defaultProfiles.map((fallback) => {
+      const found = parsed.find((p) => p?.id === fallback.id);
+      return found
+        ? { id: fallback.id, name: found.name || fallback.name, image: found.image || fallback.image }
+        : fallback;
+    });
+  } catch {
+    return defaultProfiles;
+  }
+}
+
+export function saveProfiles(profiles: Profile[]) {
+  try {
+    window.localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
+  } catch {
+    /* storage unavailable */
+  }
+}
+
+export function loadSelectedId(): string | null {
+  if (typeof window === "undefined") return null;
+  try {
+    return window.localStorage.getItem(SELECTED_KEY);
+  } catch {
+    return null;
+  }
+}
+
+export function saveSelectedId(id: string) {
+  try {
+    window.localStorage.setItem(SELECTED_KEY, id);
+  } catch {
+    /* storage unavailable */
+  }
+}

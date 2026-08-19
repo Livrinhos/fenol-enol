@@ -1,0 +1,280 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * YAKUZA ARCHIVE — Japan / crime documentary design system.
+ * Black dominant, crimson accent, minimal gold. All colors in oklch.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ink: var(--ink);
+  --color-surface: var(--surface);
+  --color-elevated: var(--elevated);
+  --color-blood: var(--blood);
+  --color-crimson: var(--crimson);
+  --color-gold: var(--gold);
+  --font-display: "Shippori Mincho", "Times New Roman", serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.25rem;
+
+  /* real height of the fixed site header, incl. safe area */
+  --header-h: calc(env(safe-area-inset-top, 0px) + 4rem);
+  /* height of the sticky in-page section nav */
+  --section-nav-h: 3.25rem;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-h: calc(env(safe-area-inset-top, 0px) + 4.5rem);
+  }
+}
+
+:root {
+
+
+  /* raw palette */
+  --ink: oklch(0.111 0 0); /* #030303 */
+  --surface: oklch(0.152 0 0); /* #090909 */
+  --elevated: oklch(0.19 0 0); /* #121212 */
+  --blood: oklch(0.318 0.146 27.5); /* #720000 */
+  --crimson: oklch(0.474 0.196 27.5); /* #B51616 */
+  --gold: oklch(0.696 0.075 84); /* #B89B62 */
+
+  --background: var(--ink);
+  --foreground: oklch(0.951 0.008 92); /* #F2F1EC */
+  --card: var(--surface);
+  --card-foreground: oklch(0.951 0.008 92);
+  --popover: var(--elevated);
+  --popover-foreground: oklch(0.951 0.008 92);
+  --primary: var(--crimson);
+  --primary-foreground: oklch(0.98 0.005 92);
+  --secondary: var(--elevated);
+  --secondary-foreground: oklch(0.951 0.008 92);
+  --muted: var(--elevated);
+  --muted-foreground: oklch(0.68 0 0); /* readable grey */
+  --accent: var(--gold);
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.55 0.21 27.5);
+  --destructive-foreground: oklch(0.98 0.005 92);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 16%);
+  --ring: var(--crimson);
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--color-gold);
+    outline-offset: 4px;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-crimson) 55%, transparent);
+    color: var(--color-foreground);
+  }
+
+  /* discreet, documentary-grade scrollbars on horizontal rows */
+  .row-scroller {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in oklab, var(--color-foreground) 14%, transparent) transparent;
+  }
+}
+
+/* Editorial helpers */
+@utility kicker {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  letter-spacing: 0.36em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+}
+
+@utility hairline {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--color-gold) 40%, transparent),
+    color-mix(in oklab, var(--color-gold) 12%, transparent) 45%,
+    transparent
+  );
+}
+
+/* section title rule that reads as an archive divider */
+@utility rule-faint {
+  height: 1px;
+  width: 100%;
+  background: color-mix(in oklab, var(--color-foreground) 9%, transparent);
+}
+
+
+/* Subtle washi paper texture over black */
+@utility paper-grain {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    background-image:
+      radial-gradient(
+        circle at 20% 10%,
+        color-mix(in oklab, var(--color-blood) 22%, transparent),
+        transparent 55%
+      ),
+      repeating-linear-gradient(
+        0deg,
+        oklch(1 0 0 / 2.2%) 0px,
+        oklch(1 0 0 / 2.2%) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+  }
+}
+
+/* Faint ukiyo-e style wave arcs */
+@utility wave-marks {
+  background-image:
+    radial-gradient(
+      120% 60% at 50% 130%,
+      transparent 58%,
+      color-mix(in oklab, var(--color-foreground) 6%, transparent) 58.4%,
+      transparent 59.2%
+    ),
+    radial-gradient(
+      150% 70% at 50% 145%,
+      transparent 58%,
+      color-mix(in oklab, var(--color-foreground) 4%, transparent) 58.4%,
+      transparent 59.2%
+    );
+}
+
+@keyframes archive-in {
+  from {
+    opacity: 0;
+    filter: blur(14px);
+    transform: translateY(14px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes archive-out {
+  from {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(-10px) scale(1.01);
+  }
+}
+
+@keyframes veil-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@utility animate-archive-in {
+  animation: archive-in 1100ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@utility animate-archive-out {
+  animation: archive-out 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@utility animate-veil-out {
+  animation: veil-out 900ms ease-out both;
+}
+
+@keyframes chapter-in {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+    transform: scale(1.015) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1) translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
