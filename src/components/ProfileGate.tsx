@@ -59,8 +59,8 @@ export function ProfileGate() {
                   <span
                     className={`relative block aspect-square w-full overflow-clip rounded-sm border transition-all duration-500 ${
                       active
-                        ? "border-crimson shadow-[0_0_0_1px_var(--color-crimson)]"
-                        : "border-border group-hover:border-gold/60"
+                        ? "border-cyan shadow-[0_0_0_1px_var(--color-cyan)]"
+                        : "border-border group-hover:border-cyan/50"
                     }`}
                   >
                     <img
@@ -91,9 +91,9 @@ export function ProfileGate() {
               setManaging((m) => !m);
               setEditingId(null);
             }}
-            className="kicker border border-border px-6 py-3 transition-colors hover:border-gold/60 hover:text-foreground"
+            className="kicker border border-border px-6 py-3 transition-colors hover:border-cyan/50 hover:text-foreground"
           >
-            {managing ? "Concluir" : "Gerenciar perfis"}
+            {managing ? "Concluir" : "Gerenciar integrantes"}
           </button>
 
           {selectedId && !managing && (
@@ -106,11 +106,11 @@ export function ProfileGate() {
             <button
               type="button"
               onClick={() => {
-                if (window.confirm("Resetar o progresso deste perfil? Esta ação não altera o nome ou a foto.")) {
+                if (window.confirm("Resetar o progresso deste integrante? Esta ação não altera o nome ou a foto.")) {
                   resetWatchState(selectedId);
                 }
               }}
-              className="kicker border border-crimson/60 px-6 py-3 text-crimson transition-colors hover:border-crimson hover:bg-crimson/10"
+              className="kicker border border-destructive/60 px-6 py-3 text-destructive transition-colors hover:border-destructive hover:bg-destructive/10"
             >
               Resetar progresso
             </button>
@@ -187,7 +187,7 @@ function EditProfileDialog({
         }}
         className="max-h-full w-full max-w-lg overflow-y-auto border border-border bg-surface p-6 sm:p-8"
       >
-        <p className="kicker">Gerenciar perfil</p>
+        <p className="kicker">Gerenciar integrante</p>
         <h2
           id="edit-profile-title"
           className="mt-3 font-display text-2xl tracking-[0.14em] text-foreground"
@@ -219,7 +219,7 @@ function EditProfileDialog({
                 onChange={(e) => setName(e.target.value)}
                 maxLength={24}
                 className="w-full border border-input bg-elevated px-3 py-2 text-sm tracking-[0.1em] text-foreground placeholder:text-muted-foreground"
-                placeholder="Nome do participante"
+                placeholder="Nome do integrante"
               />
             </div>
             <div>
@@ -256,7 +256,7 @@ function EditProfileDialog({
           </button>
           <button
             type="submit"
-            className="kicker border border-crimson bg-crimson px-5 py-3 text-primary-foreground transition-colors hover:bg-blood"
+            className="kicker border border-cyan bg-cyan px-5 py-3 text-primary-foreground transition-colors hover:bg-deep"
           >
             Salvar
           </button>
