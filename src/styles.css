@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * QUÍMICA ORGÂNICA — laboratório contemporâneo + editorial científico.
- * Fundos profundos petróleo, azul profundo, ciano de acento e verde químico discreto.
+ * YAKUZA ARCHIVE — Japan / crime documentary design system.
+ * Black dominant, crimson accent, minimal gold. All colors in oklch.
  */
 
 @theme inline {
@@ -39,13 +39,8 @@
   --color-blood: var(--blood);
   --color-crimson: var(--crimson);
   --color-gold: var(--gold);
-  /* aliases semânticos da identidade de química */
-  --color-deep: var(--blood);
-  --color-cyan: var(--crimson);
-  --color-chem: var(--gold);
-  --color-paper: var(--paper);
-  --font-display: "IBM Plex Serif", "Times New Roman", serif;
-  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-display: "Shippori Mincho", "Times New Roman", serif;
+  --font-sans: "Inter", system-ui, sans-serif;
 }
 
 :root {
@@ -67,32 +62,31 @@
 
 
   /* raw palette */
-  --ink: oklch(0.196 0.019 217); /* #071014 */
-  --surface: oklch(0.229 0.021 208); /* #0B1518 */
-  --elevated: oklch(0.271 0.023 208); /* superfície elevada */
-  --paper: oklch(0.943 0.008 165); /* #EAF0EE */
-  --blood: oklch(0.427 0.076 220); /* #0A5A73 azul profundo */
-  --crimson: oklch(0.641 0.096 209); /* #17A6B8 ciano acento */
-  --gold: oklch(0.663 0.077 140); /* #6EA66D verde químico */
+  --ink: oklch(0.111 0 0); /* #030303 */
+  --surface: oklch(0.152 0 0); /* #090909 */
+  --elevated: oklch(0.19 0 0); /* #121212 */
+  --blood: oklch(0.318 0.146 27.5); /* #720000 */
+  --crimson: oklch(0.474 0.196 27.5); /* #B51616 */
+  --gold: oklch(0.696 0.075 84); /* #B89B62 */
 
   --background: var(--ink);
-  --foreground: oklch(0.966 0.004 165); /* #F3F6F4 */
+  --foreground: oklch(0.951 0.008 92); /* #F2F1EC */
   --card: var(--surface);
-  --card-foreground: oklch(0.966 0.004 165);
+  --card-foreground: oklch(0.951 0.008 92);
   --popover: var(--elevated);
-  --popover-foreground: oklch(0.966 0.004 165);
+  --popover-foreground: oklch(0.951 0.008 92);
   --primary: var(--crimson);
-  --primary-foreground: oklch(0.196 0.019 217);
+  --primary-foreground: oklch(0.98 0.005 92);
   --secondary: var(--elevated);
-  --secondary-foreground: oklch(0.966 0.004 165);
+  --secondary-foreground: oklch(0.951 0.008 92);
   --muted: var(--elevated);
-  --muted-foreground: oklch(0.735 0.014 200); /* cinza-azulado legível */
-  --accent: var(--crimson);
+  --muted-foreground: oklch(0.68 0 0); /* readable grey */
+  --accent: var(--gold);
   --accent-foreground: var(--ink);
-  --destructive: oklch(0.58 0.16 25);
-  --destructive-foreground: oklch(0.966 0.004 165);
-  --border: oklch(0.943 0.008 165 / 14%);
-  --input: oklch(0.943 0.008 165 / 18%);
+  --destructive: oklch(0.55 0.21 27.5);
+  --destructive-foreground: oklch(0.98 0.005 92);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 16%);
   --ring: var(--crimson);
 }
 
@@ -128,7 +122,7 @@
   }
 
   :focus-visible {
-    outline: 1px solid var(--color-cyan);
+    outline: 1px solid var(--color-gold);
     outline-offset: 4px;
   }
 
@@ -159,8 +153,8 @@
   width: 100%;
   background: linear-gradient(
     90deg,
-    color-mix(in oklab, var(--color-cyan) 55%, transparent),
-    color-mix(in oklab, var(--color-deep) 30%, transparent) 45%,
+    color-mix(in oklab, var(--color-gold) 40%, transparent),
+    color-mix(in oklab, var(--color-gold) 12%, transparent) 45%,
     transparent
   );
 }
@@ -173,7 +167,7 @@
 }
 
 
-/* Faint scientific grid + laboratory light wash */
+/* Subtle washi paper texture over black */
 @utility paper-grain {
   position: relative;
   &::after {
@@ -181,55 +175,37 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.5;
+    opacity: 0.35;
     background-image:
       radial-gradient(
-        circle at 18% 8%,
-        color-mix(in oklab, var(--color-deep) 26%, transparent),
-        transparent 58%
-      ),
-      radial-gradient(
-        circle at 84% 92%,
-        color-mix(in oklab, var(--color-cyan) 12%, transparent),
+        circle at 20% 10%,
+        color-mix(in oklab, var(--color-blood) 22%, transparent),
         transparent 55%
       ),
-      linear-gradient(
+      repeating-linear-gradient(
         0deg,
-        color-mix(in oklab, var(--color-paper) 3%, transparent) 0px,
-        color-mix(in oklab, var(--color-paper) 3%, transparent) 1px,
+        oklch(1 0 0 / 2.2%) 0px,
+        oklch(1 0 0 / 2.2%) 1px,
         transparent 1px,
-        transparent 44px
-      ),
-      linear-gradient(
-        90deg,
-        color-mix(in oklab, var(--color-paper) 3%, transparent) 0px,
-        color-mix(in oklab, var(--color-paper) 3%, transparent) 1px,
-        transparent 1px,
-        transparent 44px
+        transparent 3px
       );
   }
 }
 
-/* Faint molecular bond rings, low intensity */
+/* Faint ukiyo-e style wave arcs */
 @utility wave-marks {
   background-image:
     radial-gradient(
-      circle at 12% 78%,
-      transparent 5.6%,
-      color-mix(in oklab, var(--color-cyan) 14%, transparent) 5.7%,
-      transparent 6.1%
+      120% 60% at 50% 130%,
+      transparent 58%,
+      color-mix(in oklab, var(--color-foreground) 6%, transparent) 58.4%,
+      transparent 59.2%
     ),
     radial-gradient(
-      circle at 88% 22%,
-      transparent 4.2%,
-      color-mix(in oklab, var(--color-chem) 12%, transparent) 4.3%,
-      transparent 4.7%
-    ),
-    radial-gradient(
-      circle at 50% 118%,
-      transparent 26%,
-      color-mix(in oklab, var(--color-foreground) 5%, transparent) 26.2%,
-      transparent 26.6%
+      150% 70% at 50% 145%,
+      transparent 58%,
+      color-mix(in oklab, var(--color-foreground) 4%, transparent) 58.4%,
+      transparent 59.2%
     );
 }
 
