@@ -24,7 +24,7 @@ export function ProfileGate() {
   const select = (id: string) => {
     setSelectedId(id);
     saveSelectedId(id);
-    void navigate({ to: "/home" });
+    void navigate({ to: "/conteudo", search: { cap: 1 } });
   };
 
   const persist = (next: Profile[]) => {
@@ -38,9 +38,9 @@ export function ProfileGate() {
     <main className="paper-grain relative min-h-screen bg-ink">
       <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-5xl flex-col justify-center px-5 py-16 sm:px-8">
         <header className="mb-12 text-center sm:mb-16">
-          <p className="kicker">Japan / Archive / 2026</p>
+          <p className="kicker">Química Orgânica · Apresentação interativa · 2026</p>
           <h1 className="mt-6 font-display text-3xl tracking-[0.18em] text-foreground sm:text-5xl">
-            QUEM ESTÁ ASSISTINDO?
+            QUEM ESTÁ APRESENTANDO?
           </h1>
           <div className="hairline mx-auto mt-8 max-w-xs" />
         </header>
@@ -65,7 +65,7 @@ export function ProfileGate() {
                   >
                     <img
                       src={profile.image}
-                      alt={`Foto do perfil ${profile.name}`}
+                      alt={`Foto do participante ${profile.name}`}
                       loading="lazy"
                       className="size-full object-cover opacity-80 grayscale transition-all duration-700 group-hover:scale-[1.04] group-hover:opacity-100 group-focus-visible:opacity-100"
                     />

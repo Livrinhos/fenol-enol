@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ArquivoRouteImport } from './routes/arquivo'
 import { Route as CinemaRouteImport } from './routes/cinema'
+import { Route as ConteudoRouteImport } from './routes/conteudo'
 import { Route as DocumentarioRouteImport } from './routes/documentario'
 import { Route as EpisodiosRouteImport } from './routes/episodios'
 import { Route as HomeRouteImport } from './routes/home'
@@ -30,6 +31,11 @@ const ArquivoRoute = ArquivoRouteImport.update({
 const CinemaRoute = CinemaRouteImport.update({
   id: '/cinema',
   path: '/cinema',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConteudoRoute = ConteudoRouteImport.update({
+  id: '/conteudo',
+  path: '/conteudo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DocumentarioRoute = DocumentarioRouteImport.update({
@@ -57,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/arquivo': typeof ArquivoRoute
   '/cinema': typeof CinemaRoute
+  '/conteudo': typeof ConteudoRoute
   '/documentario': typeof DocumentarioRoute
   '/episodios': typeof EpisodiosRoute
   '/home': typeof HomeRoute
@@ -66,6 +73,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/arquivo': typeof ArquivoRoute
   '/cinema': typeof CinemaRoute
+  '/conteudo': typeof ConteudoRoute
   '/documentario': typeof DocumentarioRoute
   '/episodios': typeof EpisodiosRoute
   '/home': typeof HomeRoute
@@ -76,6 +84,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/arquivo': typeof ArquivoRoute
   '/cinema': typeof CinemaRoute
+  '/conteudo': typeof ConteudoRoute
   '/documentario': typeof DocumentarioRoute
   '/episodios': typeof EpisodiosRoute
   '/home': typeof HomeRoute
@@ -87,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/arquivo'
     | '/cinema'
+    | '/conteudo'
     | '/documentario'
     | '/episodios'
     | '/home'
@@ -96,6 +106,7 @@ export interface FileRouteTypes {
     | '/'
     | '/arquivo'
     | '/cinema'
+    | '/conteudo'
     | '/documentario'
     | '/episodios'
     | '/home'
@@ -105,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/arquivo'
     | '/cinema'
+    | '/conteudo'
     | '/documentario'
     | '/episodios'
     | '/home'
@@ -115,6 +127,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArquivoRoute: typeof ArquivoRoute
   CinemaRoute: typeof CinemaRoute
+  ConteudoRoute: typeof ConteudoRoute
   DocumentarioRoute: typeof DocumentarioRoute
   EpisodiosRoute: typeof EpisodiosRoute
   HomeRoute: typeof HomeRoute
@@ -142,6 +155,13 @@ declare module '@tanstack/react-router' {
       path: '/cinema'
       fullPath: '/cinema'
       preLoaderRoute: typeof CinemaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conteudo': {
+      id: '/conteudo'
+      path: '/conteudo'
+      fullPath: '/conteudo'
+      preLoaderRoute: typeof ConteudoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/documentario': {
@@ -179,6 +199,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArquivoRoute: ArquivoRoute,
   CinemaRoute: CinemaRoute,
+  ConteudoRoute: ConteudoRoute,
   DocumentarioRoute: DocumentarioRoute,
   EpisodiosRoute: EpisodiosRoute,
   HomeRoute: HomeRoute,
