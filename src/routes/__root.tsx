@@ -77,17 +77,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Química Orgânica — Apresentação interativa" },
+      { title: "YAKUZA ARCHIVE" },
       {
         name: "description",
-        content:
-          "Funções orgânicas, grupo funcional, nomenclatura, aplicações, fenol e enol em uma apresentação interativa.",
+        content: "A história por trás do crime organizado japonês — documentário interativo.",
       },
-      { property: "og:title", content: "Química Orgânica — Apresentação interativa" },
+      { property: "og:title", content: "YAKUZA ARCHIVE" },
       {
         property: "og:description",
-        content:
-          "Funções orgânicas, grupo funcional, nomenclatura, aplicações, fenol e enol em uma apresentação interativa.",
+        content: "A história por trás do crime organizado japonês — documentário interativo.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -101,7 +99,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@300;400;600&family=IBM+Plex+Sans:wght@300;400;500&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;800&family=Inter:wght@300;400;500&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],

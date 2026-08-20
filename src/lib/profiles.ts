@@ -9,15 +9,15 @@ export type Profile = {
   image: string;
 };
 
-export const PROFILES_KEY = "quimica-organica:profiles";
-export const SELECTED_KEY = "quimica-organica:selected-profile";
-export const INTRO_KEY = "quimica-organica:intro-seen";
+export const PROFILES_KEY = "yakuza-archive:profiles";
+export const SELECTED_KEY = "yakuza-archive:selected-profile";
+export const INTRO_KEY = "yakuza-archive:intro-seen";
 
 export const defaultProfiles: Profile[] = [
   { id: "p1", name: "Henrique", image: avatar1 },
-  { id: "p2", name: "Integrante 2", image: avatar2 },
-  { id: "p3", name: "Integrante 3", image: avatar3 },
-  { id: "p4", name: "Integrante 4", image: avatar4 },
+  { id: "p2", name: "Matheus Caio", image: avatar2 },
+  { id: "p3", name: "Victor Antonio", image: avatar3 },
+  { id: "p4", name: "Kaynã", image: avatar4 },
 ];
 
 export function loadProfiles(): Profile[] {
