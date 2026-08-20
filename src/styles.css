@@ -61,16 +61,17 @@
 :root {
 
 
-  /* raw palette */
-  --ink: oklch(0.111 0 0); /* #030303 */
-  --surface: oklch(0.152 0 0); /* #090909 */
-  --elevated: oklch(0.19 0 0); /* #121212 */
-  --blood: oklch(0.318 0.146 27.5); /* #720000 */
-  --crimson: oklch(0.474 0.196 27.5); /* #B51616 */
-  --gold: oklch(0.696 0.075 84); /* #B89B62 */
+  /* raw palette — química orgânica */
+  --ink: oklch(0.196 0.024 210); /* #071014 */
+  --surface: oklch(0.234 0.021 205); /* #0B1518 */
+  --elevated: oklch(0.28 0.02 205);
+  --blood: oklch(0.42 0.076 226); /* #0A5A73 azul profundo */
+  --crimson: oklch(0.639 0.093 208); /* #17A6B8 ciano acento */
+  --gold: oklch(0.664 0.083 141); /* #6EA66D verde químico */
 
   --background: var(--ink);
-  --foreground: oklch(0.951 0.008 92); /* #F2F1EC */
+  --foreground: oklch(0.963 0.005 160); /* #F3F6F4 */
+
   --card: var(--surface);
   --card-foreground: oklch(0.951 0.008 92);
   --popover: var(--elevated);

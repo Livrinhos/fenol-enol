@@ -6,10 +6,7 @@ import { SearchOverlay } from "@/components/SearchOverlay";
 
 const NAV = [
   { label: "Início", to: "/home" },
-  { label: "Documentário", to: "/documentario" },
-  { label: "Episódios", to: "/episodios" },
-  { label: "Arquivo", to: "/arquivo" },
-  { label: "Minha Lista", to: "/home" },
+  { label: "Conteúdo", to: "/conteudo" },
 ] as const;
 
 
@@ -46,7 +43,7 @@ export function SiteHeader() {
           to="/home"
           className="min-w-0 font-display text-[0.8rem] tracking-[0.4em] text-foreground uppercase sm:text-sm"
         >
-          Yakuza <span className="text-crimson">Archive</span>
+          Química <span className="text-crimson">Orgânica</span>
         </Link>
 
         <nav aria-label="Navegação principal" className="hidden lg:block">
@@ -55,7 +52,7 @@ export function SiteHeader() {
               <li key={item.label}>
                 <Link
                   to={item.to}
-                  search={{ q: "", cat: "TODAS" } as never}
+                  search={{ q: "", cat: "TODAS", cap: 1 } as never}
                   className="border-b border-transparent pb-1 text-[0.62rem] tracking-[0.3em] text-muted-foreground uppercase transition-colors duration-300 hover:text-foreground motion-reduce:transition-none"
                   activeProps={{ className: "text-foreground border-crimson" }}
                 >
@@ -121,7 +118,7 @@ export function SiteHeader() {
               <li key={item.label} className="border-b border-border/60 last:border-0">
                 <Link
                   to={item.to}
-                  search={{ q: "", cat: "TODAS" } as never}
+                  search={{ q: "", cat: "TODAS", cap: 1 } as never}
                   onClick={() => setOpen(false)}
                   className="block py-4 text-xs tracking-[0.3em] text-muted-foreground uppercase transition-colors hover:text-foreground"
                 >
