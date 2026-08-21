@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ConteudoRouteImport } from './routes/conteudo'
+import { Route as ApresentarNRouteImport } from './routes/apresentar.$n'
 import { Route as CapituloNRouteImport } from './routes/capitulo.$n'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +24,11 @@ const ConteudoRoute = ConteudoRouteImport.update({
   path: '/conteudo',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApresentarNRoute = ApresentarNRouteImport.update({
+  id: '/apresentar/$n',
+  path: '/apresentar/$n',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CapituloNRoute = CapituloNRouteImport.update({
   id: '/capitulo/$n',
   path: '/capitulo/$n',
@@ -32,30 +38,34 @@ const CapituloNRoute = CapituloNRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/conteudo': typeof ConteudoRoute
+  '/apresentar/$n': typeof ApresentarNRoute
   '/capitulo/$n': typeof CapituloNRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/conteudo': typeof ConteudoRoute
+  '/apresentar/$n': typeof ApresentarNRoute
   '/capitulo/$n': typeof CapituloNRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/conteudo': typeof ConteudoRoute
+  '/apresentar/$n': typeof ApresentarNRoute
   '/capitulo/$n': typeof CapituloNRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/conteudo' | '/capitulo/$n'
+  fullPaths: '/' | '/conteudo' | '/apresentar/$n' | '/capitulo/$n'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/conteudo' | '/capitulo/$n'
-  id: '__root__' | '/' | '/conteudo' | '/capitulo/$n'
+  to: '/' | '/conteudo' | '/apresentar/$n' | '/capitulo/$n'
+  id: '__root__' | '/' | '/conteudo' | '/apresentar/$n' | '/capitulo/$n'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ConteudoRoute: typeof ConteudoRoute
+  ApresentarNRoute: typeof ApresentarNRoute
   CapituloNRoute: typeof CapituloNRoute
 }
 
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ConteudoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/apresentar/$n': {
+      id: '/apresentar/$n'
+      path: '/apresentar/$n'
+      fullPath: '/apresentar/$n'
+      preLoaderRoute: typeof ApresentarNRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/capitulo/$n': {
       id: '/capitulo/$n'
       path: '/capitulo/$n'
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ConteudoRoute: ConteudoRoute,
+  ApresentarNRoute: ApresentarNRoute,
   CapituloNRoute: CapituloNRoute,
 }
 export const routeTree = rootRouteImport
