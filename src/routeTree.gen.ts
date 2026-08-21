@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ConteudoRouteImport } from './routes/conteudo'
+import { Route as CapituloNRouteImport } from './routes/capitulo.$n'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +23,40 @@ const ConteudoRoute = ConteudoRouteImport.update({
   path: '/conteudo',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CapituloNRoute = CapituloNRouteImport.update({
+  id: '/capitulo/$n',
+  path: '/capitulo/$n',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/conteudo': typeof ConteudoRoute
+  '/capitulo/$n': typeof CapituloNRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/conteudo': typeof ConteudoRoute
+  '/capitulo/$n': typeof CapituloNRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/conteudo': typeof ConteudoRoute
+  '/capitulo/$n': typeof CapituloNRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/conteudo'
+  fullPaths: '/' | '/conteudo' | '/capitulo/$n'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/conteudo'
-  id: '__root__' | '/' | '/conteudo'
+  to: '/' | '/conteudo' | '/capitulo/$n'
+  id: '__root__' | '/' | '/conteudo' | '/capitulo/$n'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ConteudoRoute: typeof ConteudoRoute
+  CapituloNRoute: typeof CapituloNRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +75,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ConteudoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/capitulo/$n': {
+      id: '/capitulo/$n'
+      path: '/capitulo/$n'
+      fullPath: '/capitulo/$n'
+      preLoaderRoute: typeof CapituloNRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ConteudoRoute: ConteudoRoute,
+  CapituloNRoute: CapituloNRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
