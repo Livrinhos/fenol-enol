@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, Search, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { loadProfiles, loadSelectedId, type Profile } from "@/lib/profiles";
-import { SearchOverlay } from "@/components/SearchOverlay";
 
 const NAV = [
-  { label: "Início", to: "/home" },
+  { label: "Início", to: "/" },
   { label: "Conteúdo", to: "/conteudo" },
 ] as const;
 
@@ -14,7 +13,6 @@ export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [profile, setProfile] = useState<Profile | null>(null);
-  const [searchOpen, setSearchOpen] = useState(false);
 
   useEffect(() => {
     const profiles = loadProfiles();
@@ -40,7 +38,7 @@ export function SiteHeader() {
     >
       <div className="mx-auto grid w-full max-w-[110rem] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-4 sm:px-8 lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:py-5">
         <Link
-          to="/home"
+          to="/"
           className="min-w-0 font-display text-[0.8rem] tracking-[0.4em] text-foreground uppercase sm:text-sm"
         >
           Química <span className="text-crimson">Orgânica</span>
@@ -52,7 +50,7 @@ export function SiteHeader() {
               <li key={item.label}>
                 <Link
                   to={item.to}
-                  search={{ q: "", cat: "TODAS", cap: 1 } as never}
+                  search={{ cap: 1 } as never}
                   className="border-b border-transparent pb-1 text-[0.62rem] tracking-[0.3em] text-muted-foreground uppercase transition-colors duration-300 hover:text-foreground motion-reduce:transition-none"
                   activeProps={{ className: "text-foreground border-crimson" }}
                 >
@@ -64,16 +62,6 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-4 sm:gap-6">
-          <button
-            type="button"
-            aria-label="Pesquisar"
-            aria-expanded={searchOpen}
-            onClick={() => setSearchOpen(true)}
-            className="p-1 text-muted-foreground transition-colors duration-300 hover:text-foreground motion-reduce:transition-none"
-          >
-            <Search className="size-4" aria-hidden="true" />
-          </button>
-
           <Link
             to="/"
             className="group flex items-center gap-3"
@@ -118,7 +106,7 @@ export function SiteHeader() {
               <li key={item.label} className="border-b border-border/60 last:border-0">
                 <Link
                   to={item.to}
-                  search={{ q: "", cat: "TODAS", cap: 1 } as never}
+                  search={{ cap: 1 } as never}
                   onClick={() => setOpen(false)}
                   className="block py-4 text-xs tracking-[0.3em] text-muted-foreground uppercase transition-colors hover:text-foreground"
                 >
@@ -129,7 +117,6 @@ export function SiteHeader() {
           </ul>
         </nav>
       )}
-      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
   );
 }

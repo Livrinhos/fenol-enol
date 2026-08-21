@@ -7,16 +7,16 @@ import { INTRO_KEY } from "@/lib/profiles";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "YAKUZA ARCHIVE — Documentário interativo" },
+      { title: "Química Orgânica — Apresentação interativa" },
       {
         name: "description",
         content:
-          "Documentário interativo sobre a história por trás do crime organizado japonês. Escolha seu perfil e comece o arquivo.",
+          "Apresentação interativa de Química Orgânica: funções orgânicas, grupos funcionais, nomenclatura, aplicações, fenol e enol. Escolha o participante e comece.",
       },
-      { property: "og:title", content: "YAKUZA ARCHIVE — Documentário interativo" },
+      { property: "og:title", content: "Química Orgânica — Apresentação interativa" },
       {
         property: "og:description",
-        content: "A história por trás do crime organizado japonês, em formato de arquivo interativo.",
+        content: "20 capítulos sobre funções orgânicas, fenol e enol, divididos entre 4 participantes.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
