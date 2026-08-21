@@ -9,9 +9,9 @@ export type Profile = {
   image: string;
 };
 
-export const PROFILES_KEY = "yakuza-archive:profiles";
-export const SELECTED_KEY = "yakuza-archive:selected-profile";
-export const INTRO_KEY = "yakuza-archive:intro-seen";
+export const PROFILES_KEY = "quimica-organica:profiles";
+export const SELECTED_KEY = "quimica-organica:selected-profile";
+export const INTRO_KEY = "quimica-organica:intro-seen";
 
 export const defaultProfiles: Profile[] = [
   { id: "p1", name: "Henrique", image: avatar1 },
