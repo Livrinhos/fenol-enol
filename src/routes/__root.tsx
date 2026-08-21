@@ -17,16 +17,16 @@ function NotFoundComponent() {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">Página não encontrada</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+          Esta página não existe. Volte ao início da apresentação.
         </p>
         <div className="mt-6">
           <Link
             to="/"
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Go home
+            Voltar ao início
           </Link>
         </div>
       </div>
@@ -64,7 +64,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
             href="/"
             className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
           >
-            Go home
+            Voltar ao início
           </a>
         </div>
       </div>
@@ -77,15 +77,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "YAKUZA ARCHIVE" },
+      { title: "Química Orgânica — Apresentação interativa" },
       {
         name: "description",
-        content: "A história por trás do crime organizado japonês — documentário interativo.",
+        content: "Funções orgânicas, grupos funcionais, nomenclatura, aplicações, fenol e enol em 20 capítulos.",
       },
-      { property: "og:title", content: "YAKUZA ARCHIVE" },
+      { property: "og:title", content: "Química Orgânica — Apresentação interativa" },
       {
         property: "og:description",
-        content: "A história por trás do crime organizado japonês — documentário interativo.",
+        content: "Funções orgânicas, grupos funcionais, nomenclatura, aplicações, fenol e enol em 20 capítulos.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
