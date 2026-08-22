@@ -2,6 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { ChemVisual } from "@/components/chem/ChemVisual";
+import { MoleculeStage, sceneForChapter } from "@/components/chem/MoleculeStage";
 import { tryFullscreen } from "@/lib/fullscreen";
 import { TOTAL_CHAPTERS, chapters, findPart, findPresentationChapter } from "@/lib/presentationContent";
 
@@ -29,6 +30,7 @@ function PresentMode() {
   const chapter = findPresentationChapter(num) ?? chapters[0]!;
   const part = findPart(chapter.part)!;
   const [showScript, setShowScript] = useState(false);
+  const scene = sceneForChapter(chapter.number);
 
   const prev = chapter.number > 1 ? chapter.number - 1 : null;
   const next = chapter.number < TOTAL_CHAPTERS ? chapter.number + 1 : null;
@@ -86,6 +88,7 @@ function PresentMode() {
       </header>
 
       <main key={chapter.number} className="animate-archive-in relative flex flex-1 items-center px-5 sm:px-10">
+        <div className={scene ? "grid w-full gap-8 lg:grid-cols-[1.05fr_1fr] lg:items-center" : "w-full max-w-5xl"}>
         <div className="w-full max-w-5xl">
           <p className="font-display text-sm tracking-[0.36em] text-crimson">
             EP. {String(chapter.number).padStart(2, "0")} / {TOTAL_CHAPTERS}
@@ -116,6 +119,12 @@ function PresentMode() {
             <p className="mt-8 max-w-4xl border border-border bg-ink/70 p-5 text-sm leading-relaxed text-muted-foreground backdrop-blur-sm">
               {chapter.script}
             </p>
+          )}
+        </div>
+          {scene && (
+            <div className="w-full max-w-xl">
+              <MoleculeStage scene={scene} />
+            </div>
           )}
         </div>
       </main>
