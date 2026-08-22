@@ -8,6 +8,7 @@ import {
   type Profile,
 } from "@/lib/profiles";
 import { resetWatchState } from "@/lib/watch-state";
+import { parts } from "@/lib/presentationContent";
 
 export function ProfileGate() {
   const [profiles, setProfiles] = useState<Profile[]>(loadProfiles);
@@ -24,7 +25,10 @@ export function ProfileGate() {
   const select = (id: string) => {
     setSelectedId(id);
     saveSelectedId(id);
-    void navigate({ to: "/conteudo", search: { cap: 1 } });
+    const index = profiles.findIndex((p) => p.id === id);
+    const part = parts[index >= 0 ? index : 0];
+    const first = part?.chapterRange[0] ?? 1;
+    void navigate({ to: "/capitulo/$n", params: { n: String(first) } });
   };
 
   const persist = (next: Profile[]) => {
