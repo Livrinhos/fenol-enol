@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { ChemVisual } from "@/components/chem/ChemVisual";
+import { MoleculeStage, sceneForChapter } from "@/components/chem/MoleculeStage";
 import {
   TOTAL_CHAPTERS,
   chapters,
