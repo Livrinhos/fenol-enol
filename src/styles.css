@@ -279,3 +279,125 @@
     transition-duration: 0.001ms !important;
   }
 }
+
+/* ────────────────────────────────────────────────────────────
+   Premium chapter stage — layered scientific atmosphere
+   ──────────────────────────────────────────────────────────── */
+
+/* deep gradient field: vignette + cyan/blue depth pools */
+@utility lab-field {
+  background-image:
+    radial-gradient(
+      70% 55% at 78% 40%,
+      color-mix(in oklab, var(--color-crimson) 16%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      60% 50% at 8% 85%,
+      color-mix(in oklab, var(--color-blood) 22%, transparent),
+      transparent 72%
+    ),
+    radial-gradient(120% 110% at 50% 50%, transparent 45%, var(--color-ink) 100%);
+}
+
+/* fine technical grid, low intensity */
+@utility tech-grid {
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in oklab, var(--color-foreground) 5%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--color-foreground) 5%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 56px 56px;
+  mask-image: radial-gradient(80% 70% at 60% 45%, black, transparent 78%);
+}
+
+@keyframes lab-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-1.4%, -1.8%, 0) scale(1.035);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@utility animate-lab-drift {
+  animation: lab-drift 26s ease-in-out infinite;
+}
+
+@keyframes glow-breathe {
+  0%,
+  100% {
+    opacity: 0.42;
+  }
+  50% {
+    opacity: 0.72;
+  }
+}
+
+@utility animate-glow-breathe {
+  animation: glow-breathe 7s ease-in-out infinite;
+}
+
+/* soft radial halo behind the molecule */
+@utility stage-halo {
+  background: radial-gradient(
+    closest-side,
+    color-mix(in oklab, var(--color-crimson) 30%, transparent),
+    color-mix(in oklab, var(--color-blood) 16%, transparent) 55%,
+    transparent 78%
+  );
+  filter: blur(28px);
+}
+
+/* progressive text reveal */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+@utility reveal {
+  animation: reveal-up 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@utility reveal-1 {
+  animation-delay: 80ms;
+}
+@utility reveal-2 {
+  animation-delay: 220ms;
+}
+@utility reveal-3 {
+  animation-delay: 360ms;
+}
+@utility reveal-4 {
+  animation-delay: 520ms;
+}
+@utility reveal-5 {
+  animation-delay: 680ms;
+}
+
+/* premium glass surface for controls */
+@utility glass-panel {
+  background: color-mix(in oklab, var(--color-surface) 62%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid color-mix(in oklab, var(--color-foreground) 12%, transparent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--color-foreground) 8%, transparent),
+    0 22px 50px -28px oklch(0 0 0 / 80%);
+}
