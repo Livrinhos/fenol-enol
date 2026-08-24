@@ -10,7 +10,11 @@ import {
 import { resetWatchState } from "@/lib/watch-state";
 import { parts } from "@/lib/presentationContent";
 
-export function ProfileGate() {
+type Props = {
+  onSelect?: (profile: Profile) => void;
+};
+
+export function ProfileGate({ onSelect }: Props) {
   const [profiles, setProfiles] = useState<Profile[]>(loadProfiles);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [managing, setManaging] = useState(false);
@@ -25,6 +29,11 @@ export function ProfileGate() {
   const select = (id: string) => {
     setSelectedId(id);
     saveSelectedId(id);
+    const profile = profiles.find((p) => p.id === id);
+    if (profile && onSelect) {
+      onSelect(profile);
+      return;
+    }
     const index = profiles.findIndex((p) => p.id === id);
     const part = parts[index >= 0 ? index : 0];
     const first = part?.chapterRange[0] ?? 1;
@@ -40,10 +49,7 @@ export function ProfileGate() {
 
   return (
     <main className="profile-stage paper-grain relative min-h-screen bg-ink">
-      <div
-        className="pointer-events-none absolute inset-0 wave-marks opacity-50"
-        aria-hidden="true"
-      />
+      <div className="pointer-events-none absolute inset-0 wave-marks opacity-50" aria-hidden="true" />
       <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-6xl flex-col justify-center px-5 py-20 sm:px-8 lg:py-24">
         <header className="mb-12 max-w-3xl sm:mb-16">
           <p className="kicker text-crimson">Química Orgânica · Apresentação interativa · 2026</p>
@@ -56,7 +62,7 @@ export function ProfileGate() {
           </div>
           <div className="hairline mt-8 max-w-xl" />
           <p className="mt-5 max-w-md text-sm leading-relaxed text-muted-foreground">
-            Escolha um perfil
+            Escolha um perfil para iniciar o documentário.
           </p>
         </header>
 
@@ -113,7 +119,7 @@ export function ProfileGate() {
 
           {selectedId && !managing && (
             <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase">
-              Perfil ativo: {profiles.find((p) => p.id === selectedId)?.name}
+              Perfil selecionado: {profiles.find((p) => p.id === selectedId)?.name}
             </p>
           )}
 
@@ -189,12 +195,7 @@ function EditProfileDialog({
   };
 
   return (
-    <div
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="edit-profile-title"
-      className="fixed inset-0 z-50 flex items-center justify-center bg-ink/90 px-4 py-8"
-    >
+    <div role="dialog" aria-modal="true" aria-labelledby="edit-profile-title" className="fixed inset-0 z-50 flex items-center justify-center bg-ink/90 px-4 py-8">
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -207,72 +208,28 @@ function EditProfileDialog({
         className="max-h-full w-full max-w-lg overflow-y-auto border border-border bg-surface p-6 sm:p-8"
       >
         <p className="kicker">Gerenciar perfil</p>
-        <h2
-          id="edit-profile-title"
-          className="mt-3 font-display text-2xl tracking-[0.14em] text-foreground"
-        >
-          EDITAR PERFIL
-        </h2>
+        <h2 id="edit-profile-title" className="mt-3 font-display text-2xl tracking-[0.14em] text-foreground">EDITAR PERFIL</h2>
         <div className="hairline my-6" />
 
         <div className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-5">
-          <img
-            src={image}
-            alt="Pré-visualização da imagem do perfil"
-            width={112}
-            height={112}
-            className="size-24 shrink-0 border border-border object-cover sm:size-28"
-          />
+          <img src={image} alt="Pré-visualização da imagem do perfil" width={112} height={112} className="size-24 shrink-0 border border-border object-cover sm:size-28" />
           <div className="min-w-0 space-y-4">
             <div>
-              <label htmlFor="profile-name" className="kicker mb-2 block text-[0.6rem]">
-                Nome
-              </label>
-              <input
-                id="profile-name"
-                ref={nameRef}
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                maxLength={24}
-                className="w-full border border-input bg-elevated px-3 py-2 text-sm tracking-[0.1em] text-foreground placeholder:text-muted-foreground"
-                placeholder="Nome do participante"
-              />
+              <label htmlFor="profile-name" className="kicker mb-2 block text-[0.6rem]">Nome</label>
+              <input id="profile-name" ref={nameRef} value={name} onChange={(e) => setName(e.target.value)} maxLength={24} className="w-full border border-input bg-elevated px-3 py-2 text-sm tracking-[0.1em] text-foreground placeholder:text-muted-foreground" placeholder="Nome do participante" />
             </div>
             <div>
-              <label htmlFor="profile-image" className="kicker mb-2 block text-[0.6rem]">
-                Imagem
-              </label>
-              <input
-                id="profile-image"
-                type="file"
-                accept="image/*"
-                onChange={(e) => onFile(e.target.files?.[0])}
-                className="w-full text-xs text-muted-foreground file:mr-3 file:border file:border-border file:bg-elevated file:px-3 file:py-2 file:text-[0.6rem] file:tracking-[0.2em] file:text-foreground file:uppercase"
-              />
+              <label htmlFor="profile-image" className="kicker mb-2 block text-[0.6rem]">Imagem</label>
+              <input id="profile-image" type="file" accept="image/*" onChange={(e) => onFile(e.target.files?.[0])} className="w-full text-xs text-muted-foreground file:mr-3 file:border file:border-border file:bg-elevated file:px-3 file:py-2 file:text-[0.6rem] file:tracking-[0.2em] file:text-foreground file:uppercase" />
             </div>
           </div>
         </div>
 
-        {error && (
-          <p role="alert" className="mt-4 text-xs tracking-wide text-destructive">
-            {error}
-          </p>
-        )}
+        {error && <p role="alert" className="mt-4 text-xs tracking-wide text-destructive">{error}</p>}
 
         <div className="mt-8 flex flex-wrap justify-end gap-3">
-          <button
-            type="button"
-            onClick={onCancel}
-            className="kicker border border-border px-5 py-3 transition-colors hover:text-foreground"
-          >
-            Cancelar
-          </button>
-          <button
-            type="submit"
-            className="kicker border border-crimson bg-crimson px-5 py-3 text-primary-foreground transition-colors hover:bg-blood"
-          >
-            Salvar
-          </button>
+          <button type="button" onClick={onCancel} className="kicker border border-border px-5 py-3 transition-colors hover:text-foreground">Cancelar</button>
+          <button type="submit" className="kicker border border-crimson bg-crimson px-5 py-3 text-primary-foreground transition-colors hover:bg-blood">Salvar</button>
         </div>
       </form>
     </div>
