@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Play } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { ChemVisual } from "@/components/chem/ChemVisual";
+import { ChapterArt } from "@/components/chem/ChapterArt";
 import { loadProfiles, type Profile } from "@/lib/profiles";
 import {
   TOTAL_CHAPTERS,
@@ -119,6 +120,33 @@ function Catalogo() {
             <p className="mt-3 max-w-2xl text-xs leading-relaxed text-muted-foreground">
               {p.focus}
             </p>
+
+            {p.number === 1 && (
+              <section className="relative mt-8 overflow-hidden border border-border bg-surface/10" aria-labelledby="parte-1-capa">
+                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,var(--color-ink)_10%,color-mix(in_oklab,var(--color-ink)_68%,transparent)_58%,transparent)]" />
+                <ChapterArt
+                  chapter={1}
+                  part={1}
+                  variant="stage"
+                  className="absolute -right-12 top-1/2 h-[125%] w-[68%] -translate-y-1/2 text-foreground opacity-80 sm:-right-4 sm:w-1/2"
+                />
+                <div className="relative flex min-h-[22rem] max-w-xl flex-col justify-end gap-5 px-6 py-8 sm:min-h-[25rem] sm:px-10 sm:py-10">
+                  <p className="kicker text-crimson">Abertura da parte</p>
+                  <h3 id="parte-1-capa" className="max-w-md font-display text-2xl tracking-[0.12em] text-foreground sm:text-4xl">
+                    {p.title}
+                  </h3>
+                  <p className="max-w-md text-sm leading-relaxed text-muted-foreground">{p.focus}</p>
+                  <Link
+                    to="/capitulo/$n"
+                    params={{ n: String(p.chapterRange[0]) }}
+                    className="inline-flex w-fit items-center gap-2 border border-crimson bg-crimson px-6 py-3.5 text-[0.62rem] tracking-[0.32em] text-primary-foreground uppercase transition-colors hover:bg-blood"
+                  >
+                    <Play className="size-4" aria-hidden="true" />
+                    Começar
+                  </Link>
+                </div>
+              </section>
+            )}
 
             <ul className="mt-8 grid grid-cols-1 gap-0 border-l border-border sm:grid-cols-2 lg:grid-cols-5">
               {chaptersOfPart(p.number).map((c) => (
