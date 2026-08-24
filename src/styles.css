@@ -401,3 +401,129 @@
     inset 0 1px 0 color-mix(in oklab, var(--color-foreground) 8%, transparent),
     0 22px 50px -28px oklch(0 0 0 / 80%);
 }
+
+/* ────────────────────────────────────────────────────────────
+   Art direction — microanimações dos diagramas por capítulo
+   ──────────────────────────────────────────────────────────── */
+
+@keyframes art-draw-in {
+  from {
+    stroke-dashoffset: 220;
+    opacity: 0;
+  }
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@utility art-draw {
+  stroke-dasharray: 220;
+  animation: art-draw-in 1600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes art-float-y {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -8px, 0);
+  }
+}
+
+@utility art-float {
+  animation: art-float-y 11s ease-in-out infinite;
+}
+
+@keyframes art-fade-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@utility art-fade {
+  animation: art-fade-in 1100ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes art-pulse-o {
+  0%,
+  100% {
+    opacity: 0.22;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@utility art-pulse {
+  animation: art-pulse-o 9s ease-in-out infinite;
+}
+
+@keyframes art-breathe-s {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@utility art-breathe {
+  animation: art-breathe-s 5.5s ease-in-out infinite;
+}
+
+/* vinheta cinematográfica sobre o palco */
+@utility stage-vignette {
+  background:
+    radial-gradient(75% 60% at 50% 42%, transparent 40%, color-mix(in oklab, var(--color-ink) 92%, transparent) 100%),
+    linear-gradient(to top, var(--color-ink) 2%, transparent 42%);
+}
+
+/* faixa de luz suave, direção de topo */
+@utility stage-light {
+  background: radial-gradient(
+    55% 42% at 50% -6%,
+    color-mix(in oklab, var(--color-crimson) 16%, transparent),
+    transparent 72%
+  );
+}
+
+/* moldura técnica discreta em torno de composições */
+@utility frame-ticks {
+  position: relative;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-color: color-mix(in oklab, var(--color-crimson) 55%, transparent);
+  }
+  &::before {
+    top: 0;
+    left: 0;
+    border-top: 1px solid;
+    border-left: 1px solid;
+  }
+  &::after {
+    right: 0;
+    bottom: 0;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+  }
+}
+
+/* numeral editorial gigante em marca d'água */
+@utility numeral-ghost {
+  font-family: var(--font-display);
+  line-height: 0.8;
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in oklab, var(--color-foreground) 14%, transparent);
+}
