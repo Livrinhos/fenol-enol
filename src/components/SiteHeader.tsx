@@ -72,7 +72,7 @@ export function SiteHeader() {
                 alt=""
                 width={32}
                 height={32}
-                className="size-7 shrink-0 object-cover opacity-85 grayscale transition-all duration-500 group-hover:opacity-100 group-hover:grayscale-0 motion-reduce:transition-none"
+                className="size-7 shrink-0 object-cover opacity-90 transition-opacity duration-500 group-hover:opacity-100 motion-reduce:transition-none"
               />
             )}
             <span className="hidden text-[0.6rem] tracking-[0.3em] text-muted-foreground uppercase transition-colors duration-300 group-hover:text-foreground xl:inline">
