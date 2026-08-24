@@ -85,7 +85,7 @@ export function ProfileGate() {
                       src={profile.image}
                       alt={`Foto do participante ${profile.name}`}
                       loading="lazy"
-                      className="size-full object-cover opacity-80 grayscale transition-all duration-700 group-hover:scale-[1.04] group-hover:opacity-100 group-focus-visible:opacity-100"
+                      className="size-full object-cover opacity-90 transition-all duration-700 group-hover:scale-[1.04] group-hover:opacity-100 group-focus-visible:opacity-100"
                     />
                     {managing && (
                       <span className="kicker absolute inset-x-0 bottom-0 bg-ink/80 py-2 text-[0.55rem] text-foreground">
@@ -224,7 +224,7 @@ function EditProfileDialog({
             alt="Pré-visualização da imagem do perfil"
             width={112}
             height={112}
-            className="size-24 shrink-0 border border-border object-cover grayscale sm:size-28"
+            className="size-24 shrink-0 border border-border object-cover sm:size-28"
           />
           <div className="min-w-0 space-y-4">
             <div>
