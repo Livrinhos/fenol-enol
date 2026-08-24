@@ -43,7 +43,6 @@ function ChapterScreen() {
   const num = clamp(Number.parseInt(n, 10) || 1);
   const chapter = findPresentationChapter(num) ?? chapters[0]!;
   const part = findPart(chapter.part)!;
-  const scene = sceneForChapter(chapter.number);
 
   const prev = chapter.number > 1 ? chapter.number - 1 : null;
   const next = chapter.number < TOTAL_CHAPTERS ? chapter.number + 1 : null;
@@ -65,93 +64,52 @@ function ChapterScreen() {
     return () => window.removeEventListener("keydown", onKey);
   });
 
+  const actions = (
+    <>
+      <Link
+        to="/apresentar/$n"
+        params={{ n: String(chapter.number) }}
+        className="inline-flex items-center gap-2 border border-crimson bg-crimson px-6 py-3.5 text-[0.62rem] tracking-[0.32em] text-primary-foreground uppercase shadow-[0_0_40px_-12px_var(--color-crimson)] transition-colors hover:bg-blood"
+      >
+        <Play className="size-4" aria-hidden="true" />
+        Apresentar
+      </Link>
+      <button
+        type="button"
+        disabled={prev === null}
+        onClick={() => prev !== null && go(prev)}
+        className="inline-flex items-center gap-2 border border-border px-5 py-3.5 text-[0.62rem] tracking-[0.32em] text-foreground uppercase transition-colors hover:border-crimson/60 disabled:opacity-40"
+      >
+        <ChevronLeft className="size-4" aria-hidden="true" />
+        Anterior
+      </button>
+      <button
+        type="button"
+        disabled={next === null}
+        onClick={() => next !== null && go(next)}
+        className="inline-flex items-center gap-2 border border-border px-5 py-3.5 text-[0.62rem] tracking-[0.32em] text-foreground uppercase transition-colors hover:border-crimson/60 disabled:opacity-40"
+      >
+        Próximo
+        <ChevronRight className="size-4" aria-hidden="true" />
+      </button>
+      <Link
+        to="/conteudo"
+        search={{ cap: chapter.number } as never}
+        className="px-2 text-[0.6rem] tracking-[0.28em] text-muted-foreground uppercase transition-colors hover:text-foreground"
+      >
+        Todos os capítulos
+      </Link>
+    </>
+  );
+
   return (
     <div className="paper-grain min-h-svh bg-ink">
       <SiteHeader />
 
       {/* Palco do capítulo */}
       <main key={chapter.number} className="animate-archive-in">
-        <section className="relative overflow-hidden border-b border-border">
-          <div className="pointer-events-none absolute inset-0">
-            <div className="lab-field absolute inset-0" />
-            <div className="tech-grid animate-lab-drift absolute inset-0" />
-            <div className="absolute inset-0 wave-marks opacity-60" />
-            {!scene && (
-              <ChemVisual
-                chapter={chapter.number}
-                className="absolute -right-10 top-1/2 h-[130%] w-[70%] -translate-y-1/2 text-foreground"
-              />
-            )}
-            <div className="absolute inset-0 bg-[linear-gradient(90deg,var(--color-ink)_10%,color-mix(in_oklab,var(--color-ink)_72%,transparent)_48%,transparent)]" />
-          </div>
+        <ChapterHero chapter={chapter} part={part} actions={actions} />
 
-          <div
-            className={`relative mx-auto grid w-full max-w-[100rem] gap-10 px-5 pb-12 pt-32 sm:px-10 sm:pb-16 ${
-              scene
-                ? "min-h-[82svh] items-center lg:min-h-[92svh] lg:grid-cols-[minmax(0,1fr)_minmax(0,0.92fr)]"
-                : "min-h-[78svh] content-end lg:min-h-[88svh]"
-            }`}
-          >
-            <div className={scene ? "" : "flex flex-col justify-end"}>
-              <p className="kicker reveal reveal-1">
-                EP. {String(chapter.number).padStart(2, "0")} / {TOTAL_CHAPTERS} · PARTE {part.number} —{" "}
-                {part.title} · {part.presenter}
-              </p>
-              <h1 className="reveal reveal-2 mt-6 max-w-4xl font-display text-3xl leading-[1.05] tracking-[0.08em] text-foreground [text-shadow:0_18px_50px_oklch(0_0_0/60%)] sm:text-6xl lg:text-7xl">
-                {chapter.title}
-              </h1>
-              <div className="reveal reveal-3 mt-6 flex items-center gap-3">
-                <span className="h-px w-10 bg-crimson" />
-                <p className="text-xs tracking-[0.28em] text-crimson uppercase sm:text-sm">{chapter.subtitle}</p>
-              </div>
-              <p className="reveal reveal-4 mt-6 max-w-2xl text-sm leading-relaxed text-foreground/85 sm:text-base">
-                {chapter.summary}
-              </p>
-
-              <div className="reveal reveal-5 mt-9 flex flex-wrap items-center gap-3">
-                <Link
-                  to="/apresentar/$n"
-                  params={{ n: String(chapter.number) }}
-                  className="inline-flex items-center gap-2 border border-crimson bg-crimson px-6 py-3.5 text-[0.62rem] tracking-[0.32em] text-primary-foreground uppercase shadow-[0_0_40px_-12px_var(--color-crimson)] transition-colors hover:bg-blood"
-                >
-                  <Play className="size-4" aria-hidden="true" />
-                  Apresentar
-                </Link>
-                <button
-                  type="button"
-                  disabled={prev === null}
-                  onClick={() => prev !== null && go(prev)}
-                  className="inline-flex items-center gap-2 border border-border px-5 py-3.5 text-[0.62rem] tracking-[0.32em] text-foreground uppercase transition-colors hover:border-crimson/60 disabled:opacity-40"
-                >
-                  <ChevronLeft className="size-4" aria-hidden="true" />
-                  Anterior
-                </button>
-                <button
-                  type="button"
-                  disabled={next === null}
-                  onClick={() => next !== null && go(next)}
-                  className="inline-flex items-center gap-2 border border-border px-5 py-3.5 text-[0.62rem] tracking-[0.32em] text-foreground uppercase transition-colors hover:border-crimson/60 disabled:opacity-40"
-                >
-                  Próximo
-                  <ChevronRight className="size-4" aria-hidden="true" />
-                </button>
-                <Link
-                  to="/conteudo"
-                  search={{ cap: chapter.number } as never}
-                  className="px-2 text-[0.6rem] tracking-[0.28em] text-muted-foreground uppercase transition-colors hover:text-foreground"
-                >
-                  Todos os capítulos
-                </Link>
-              </div>
-            </div>
-
-            {scene && (
-              <div className="reveal reveal-3 relative w-full">
-                <MoleculeStage scene={scene} />
-              </div>
-            )}
-          </div>
-        </section>
 
 
         {/* Conteúdo do capítulo */}
