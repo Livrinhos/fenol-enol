@@ -58,7 +58,8 @@ function Visual({
 function Meta({ chapter, part }: { chapter: PresentationChapter; part: PresentationPart }) {
   return (
     <p className="kicker reveal reveal-1">
-      EP. {pad(chapter.number)} / {TOTAL_CHAPTERS} · PARTE {part.number} — {part.title} · {part.presenter}
+      EP. {pad(chapter.number)} / {TOTAL_CHAPTERS} · PARTE {part.number} — {part.title} ·{" "}
+      {part.presenter}
     </p>
   );
 }
@@ -78,7 +79,10 @@ function Bullets({ items, layout }: { items: string[]; layout: "inline" | "colum
     return (
       <ul className="reveal reveal-5 mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
         {items.map((b) => (
-          <li key={b} className="flex items-center gap-3 text-[0.68rem] tracking-[0.14em] text-muted-foreground uppercase">
+          <li
+            key={b}
+            className="flex items-center gap-3 text-[0.68rem] tracking-[0.14em] text-muted-foreground uppercase"
+          >
             <span className="size-1 rounded-full bg-crimson" aria-hidden="true" />
             {b}
           </li>
@@ -99,7 +103,10 @@ function Bullets({ items, layout }: { items: string[]; layout: "inline" | "colum
   return (
     <ul className="reveal reveal-5 mt-8 grid gap-2.5">
       {items.map((b) => (
-        <li key={b} className="border-l border-crimson/60 pl-3 text-xs leading-relaxed text-muted-foreground sm:text-sm">
+        <li
+          key={b}
+          className="border-l border-crimson/60 pl-3 text-xs leading-relaxed text-muted-foreground sm:text-sm"
+        >
           {b}
         </li>
       ))}
@@ -145,7 +152,11 @@ export function ChapterHero({ chapter, part, actions, mode = "page" }: Props) {
             {chapter.summary}
           </p>
           <Bullets items={bullets} layout="inline" />
-          {actions && <div className="reveal reveal-5 mt-10 flex flex-wrap items-center justify-center gap-3">{actions}</div>}
+          {actions && (
+            <div className="reveal reveal-5 mt-10 flex flex-wrap items-center justify-center gap-3">
+              {actions}
+            </div>
+          )}
         </div>
       </section>
     );
@@ -177,7 +188,11 @@ export function ChapterHero({ chapter, part, actions, mode = "page" }: Props) {
                 {chapter.title}
               </h1>
               <Subtitle text={chapter.subtitle} />
-              {actions && <div className="reveal reveal-5 mt-8 flex flex-wrap items-center gap-3">{actions}</div>}
+              {actions && (
+                <div className="reveal reveal-5 mt-8 flex flex-wrap items-center gap-3">
+                  {actions}
+                </div>
+              )}
             </div>
             <div>
               <p className="reveal reveal-4 text-sm leading-relaxed text-foreground/85 sm:text-base">
@@ -199,7 +214,11 @@ export function ChapterHero({ chapter, part, actions, mode = "page" }: Props) {
         <div className={`${shell} flex flex-col justify-center`}>
           <Meta chapter={chapter} part={part} />
           <div className="reveal reveal-3 mt-8 w-full">
-            <Visual chapter={chapter.number} part={part.number} className="mx-auto w-full max-w-4xl" />
+            <Visual
+              chapter={chapter.number}
+              part={part.number}
+              className="mx-auto w-full max-w-4xl"
+            />
           </div>
           <div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-start">
             <div>
@@ -215,7 +234,11 @@ export function ChapterHero({ chapter, part, actions, mode = "page" }: Props) {
                 {chapter.summary}
               </p>
               <Bullets items={bullets} layout="stack" />
-              {actions && <div className="reveal reveal-5 mt-8 flex flex-wrap items-center gap-3">{actions}</div>}
+              {actions && (
+                <div className="reveal reveal-5 mt-8 flex flex-wrap items-center gap-3">
+                  {actions}
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -250,7 +273,11 @@ export function ChapterHero({ chapter, part, actions, mode = "page" }: Props) {
             <p className="reveal reveal-4 mt-7 max-w-2xl text-sm leading-relaxed text-foreground/85 sm:text-base">
               {chapter.summary}
             </p>
-            {actions && <div className="reveal reveal-5 mt-9 flex flex-wrap items-center gap-3">{actions}</div>}
+            {actions && (
+              <div className="reveal reveal-5 mt-9 flex flex-wrap items-center gap-3">
+                {actions}
+              </div>
+            )}
           </div>
           <div className="frame-ticks px-6 py-4">
             <Visual chapter={chapter.number} part={part.number} className="w-full" />

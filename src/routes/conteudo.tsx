@@ -57,7 +57,7 @@ function Catalogo() {
 
       {/* Hero de catálogo */}
       <section className="relative overflow-hidden border-b border-border">
-        <div className="pointer-events-none absolute inset-0 opacity-60">
+        <div className="pointer-events-none absolute inset-0 opacity-75">
           <ChemVisual
             chapter={cap}
             className="absolute -right-16 top-1/2 h-[130%] w-[70%] -translate-y-1/2 text-foreground"
@@ -74,8 +74,8 @@ function Catalogo() {
             Grupo funcional · Nomenclatura · Aplicações · Fenol &amp; Enol
           </p>
           <p className="mt-6 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            Quatro participantes, cinco minutos cada, vinte capítulos encadeados como episódios. Escolha
-            um capítulo abaixo ou comece pelo primeiro.
+            Quatro participantes, cinco minutos cada, vinte capítulos encadeados como episódios.
+            Escolha um capítulo abaixo ou comece pelo primeiro.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Link
@@ -105,7 +105,10 @@ function Catalogo() {
         {parts.map((p) => (
           <section key={p.number} aria-labelledby={`parte-${p.number}`} className="mb-16">
             <div className="flex flex-wrap items-baseline justify-between gap-3">
-              <h2 id={`parte-${p.number}`} className="font-display text-lg tracking-[0.16em] text-foreground sm:text-2xl">
+              <h2
+                id={`parte-${p.number}`}
+                className="font-display text-lg tracking-[0.16em] text-foreground sm:text-2xl"
+              >
                 PARTE {p.number} — {p.title}
               </h2>
               <p className="text-[0.6rem] tracking-[0.26em] text-muted-foreground uppercase">
@@ -113,7 +116,9 @@ function Catalogo() {
                 {String(p.chapterRange[1]).padStart(2, "0")} · {p.duration}
               </p>
             </div>
-            <p className="mt-3 max-w-2xl text-xs leading-relaxed text-muted-foreground">{p.focus}</p>
+            <p className="mt-3 max-w-2xl text-xs leading-relaxed text-muted-foreground">
+              {p.focus}
+            </p>
 
             <ul className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
               {chaptersOfPart(p.number).map((c) => (

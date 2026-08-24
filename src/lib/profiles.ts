@@ -30,7 +30,11 @@ export function loadProfiles(): Profile[] {
     return defaultProfiles.map((fallback) => {
       const found = parsed.find((p) => p?.id === fallback.id);
       return found
-        ? { id: fallback.id, name: found.name || fallback.name, image: found.image || fallback.image }
+        ? {
+            id: fallback.id,
+            name: found.name || fallback.name,
+            image: found.image || fallback.image,
+          }
         : fallback;
     });
   } catch {

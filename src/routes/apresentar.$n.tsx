@@ -4,7 +4,12 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { ChemVisual } from "@/components/chem/ChemVisual";
 import { MoleculeStage, sceneForChapter } from "@/components/chem/MoleculeStage";
 import { tryFullscreen } from "@/lib/fullscreen";
-import { TOTAL_CHAPTERS, chapters, findPart, findPresentationChapter } from "@/lib/presentationContent";
+import {
+  TOTAL_CHAPTERS,
+  chapters,
+  findPart,
+  findPresentationChapter,
+} from "@/lib/presentationContent";
 
 export const Route = createFileRoute("/apresentar/$n")({
   head: () => ({
@@ -39,7 +44,8 @@ function PresentMode() {
     void navigate({ to: "/apresentar/$n", params: { n: String(target) } });
   };
   const exit = () => {
-    if (typeof document !== "undefined" && document.fullscreenElement) void document.exitFullscreen?.();
+    if (typeof document !== "undefined" && document.fullscreenElement)
+      void document.exitFullscreen?.();
     void navigate({ to: "/capitulo/$n", params: { n: String(chapter.number) } });
   };
 
@@ -91,40 +97,49 @@ function PresentMode() {
         </button>
       </header>
 
-      <main key={chapter.number} className="animate-archive-in relative flex flex-1 items-center px-5 sm:px-10">
-        <div className={scene ? "grid w-full gap-8 lg:grid-cols-[1.05fr_1fr] lg:items-center" : "w-full max-w-5xl"}>
-        <div className="w-full max-w-5xl">
-          <p className="reveal reveal-1 font-display text-sm tracking-[0.36em] text-crimson">
-            EP. {String(chapter.number).padStart(2, "0")} / {TOTAL_CHAPTERS}
-          </p>
-          <h1 className="reveal reveal-2 mt-6 font-display text-[2rem] leading-[1.05] tracking-[0.06em] text-foreground sm:text-6xl lg:text-7xl [text-shadow:0_18px_50px_oklch(0_0_0/60%)]">
-            {chapter.title}
-          </h1>
-          <p className="reveal reveal-3 mt-5 text-xs tracking-[0.3em] text-crimson uppercase sm:text-base">
-            {chapter.subtitle}
-          </p>
-          <p className="reveal reveal-4 mt-7 max-w-3xl text-base leading-relaxed text-foreground/90 sm:text-xl">
-            {chapter.summary}
-          </p>
-          {chapter.bullets && chapter.bullets.length > 0 && (
-            <ul className="reveal reveal-5 mt-8 grid gap-3 sm:grid-cols-2">
-              {chapter.bullets.map((b) => (
-                <li
-                  key={b}
-                  className="border-l-2 border-crimson/70 pl-4 text-sm leading-relaxed text-muted-foreground sm:text-base"
-                >
-                  {b}
-                </li>
-              ))}
-            </ul>
-          )}
-
-          {showScript && (
-            <p className="mt-8 max-w-4xl border border-border bg-ink/70 p-5 text-sm leading-relaxed text-muted-foreground backdrop-blur-sm glass-panel">
-              {chapter.script}
+      <main
+        key={chapter.number}
+        className="animate-archive-in relative flex flex-1 items-center px-5 sm:px-10"
+      >
+        <div
+          className={
+            scene
+              ? "grid w-full gap-8 lg:grid-cols-[1.05fr_1fr] lg:items-center"
+              : "w-full max-w-5xl"
+          }
+        >
+          <div className="w-full max-w-5xl">
+            <p className="reveal reveal-1 font-display text-sm tracking-[0.36em] text-crimson">
+              EP. {String(chapter.number).padStart(2, "0")} / {TOTAL_CHAPTERS}
             </p>
-          )}
-        </div>
+            <h1 className="reveal reveal-2 mt-6 font-display text-[2rem] leading-[1.05] tracking-[0.06em] text-foreground sm:text-6xl lg:text-7xl [text-shadow:0_18px_50px_oklch(0_0_0/60%)]">
+              {chapter.title}
+            </h1>
+            <p className="reveal reveal-3 mt-5 text-xs tracking-[0.3em] text-crimson uppercase sm:text-base">
+              {chapter.subtitle}
+            </p>
+            <p className="reveal reveal-4 mt-7 max-w-3xl text-base leading-relaxed text-foreground/90 sm:text-xl">
+              {chapter.summary}
+            </p>
+            {chapter.bullets && chapter.bullets.length > 0 && (
+              <ul className="reveal reveal-5 mt-8 grid gap-3 sm:grid-cols-2">
+                {chapter.bullets.map((b) => (
+                  <li
+                    key={b}
+                    className="border-l-2 border-crimson/70 pl-4 text-sm leading-relaxed text-muted-foreground sm:text-base"
+                  >
+                    {b}
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            {showScript && (
+              <p className="mt-8 max-w-4xl border border-border bg-ink/70 p-5 text-sm leading-relaxed text-muted-foreground backdrop-blur-sm glass-panel">
+                {chapter.script}
+              </p>
+            )}
+          </div>
           {scene && (
             <div className="reveal reveal-3 w-full max-w-xl">
               <MoleculeStage scene={scene} />

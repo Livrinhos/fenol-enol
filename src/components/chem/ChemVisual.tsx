@@ -13,7 +13,19 @@ const CYAN = "var(--color-crimson)";
 const DEEP = "var(--color-blood)";
 const GREEN = "var(--color-gold)";
 
-function Ring({ x, y, r, stroke, double }: { x: number; y: number; r: number; stroke: string; double?: boolean }) {
+function Ring({
+  x,
+  y,
+  r,
+  stroke,
+  double,
+}: {
+  x: number;
+  y: number;
+  r: number;
+  stroke: string;
+  double?: boolean;
+}) {
   const pts = Array.from({ length: 6 }, (_, i) => {
     const a = (Math.PI / 3) * i - Math.PI / 2;
     return `${x + r * Math.cos(a)},${y + r * Math.sin(a)}`;
@@ -21,7 +33,17 @@ function Ring({ x, y, r, stroke, double }: { x: number; y: number; r: number; st
   return (
     <g>
       <polygon points={pts} fill="none" stroke={stroke} strokeWidth="1.5" />
-      {double && <circle cx={x} cy={y} r={r * 0.58} fill="none" stroke={stroke} strokeWidth="1.2" opacity="0.7" />}
+      {double && (
+        <circle
+          cx={x}
+          cy={y}
+          r={r * 0.58}
+          fill="none"
+          stroke={stroke}
+          strokeWidth="1.2"
+          opacity="0.7"
+        />
+      )}
     </g>
   );
 }
@@ -53,7 +75,14 @@ export function ChemVisual({ chapter, className = "", variant = "hero" }: Props)
         <g stroke={accent} fill="none">
           <path d="M40 140 L80 110 L120 140 L160 110 L200 140" strokeWidth="1.6" />
           <path d="M200 140 L232 118" strokeWidth="1.6" />
-          <text x="238" y="116" fill={CYAN} stroke="none" fontSize="16" fontFamily="var(--font-sans)">
+          <text
+            x="238"
+            y="116"
+            fill={CYAN}
+            stroke="none"
+            fontSize="16"
+            fontFamily="var(--font-sans)"
+          >
             OH
           </text>
           <circle cx="80" cy="110" r="3" fill={accent} />
@@ -77,14 +106,28 @@ export function ChemVisual({ chapter, className = "", variant = "hero" }: Props)
           <path d="M100 100 L150 130" strokeWidth="1.6" />
           <path d="M104 92 L154 122" strokeWidth="1.6" />
           <line x1="100" y1="100" x2="100" y2="60" strokeWidth="1.6" />
-          <text x="90" y="52" fill={GREEN} stroke="none" fontSize="18" fontFamily="var(--font-sans)">
+          <text
+            x="90"
+            y="52"
+            fill={GREEN}
+            stroke="none"
+            fontSize="18"
+            fontFamily="var(--font-sans)"
+          >
             OH
           </text>
           <path d="M190 95 L215 95" strokeWidth="1.2" />
           <path d="M215 95 l-6 -4 M215 95 l-6 4" strokeWidth="1.2" />
           <path d="M215 112 L190 112" strokeWidth="1.2" />
           <path d="M190 112 l6 -4 M190 112 l6 4" strokeWidth="1.2" />
-          <text x="240" y="110" fill={CYAN} stroke="none" fontSize="16" fontFamily="var(--font-sans)">
+          <text
+            x="240"
+            y="110"
+            fill={CYAN}
+            stroke="none"
+            fontSize="16"
+            fontFamily="var(--font-sans)"
+          >
             C=O
           </text>
         </g>
@@ -101,7 +144,14 @@ export function ChemVisual({ chapter, className = "", variant = "hero" }: Props)
             <path d="M215 130 L245 105 L275 130" strokeWidth="1.5" />
             <path d="M219 122 L249 97" strokeWidth="1.5" />
             <line x1="245" y1="105" x2="245" y2="70" strokeWidth="1.5" />
-            <text x="236" y="62" fill={GREEN} stroke="none" fontSize="15" fontFamily="var(--font-sans)">
+            <text
+              x="236"
+              y="62"
+              fill={GREEN}
+              stroke="none"
+              fontSize="15"
+              fontFamily="var(--font-sans)"
+            >
               OH
             </text>
           </g>

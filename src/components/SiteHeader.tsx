@@ -8,7 +8,6 @@ const NAV = [
   { label: "Conteúdo", to: "/conteudo" },
 ] as const;
 
-
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -89,11 +88,14 @@ export function SiteHeader() {
             aria-label={open ? "Fechar menu" : "Abrir menu"}
             className="p-1 text-foreground lg:hidden"
           >
-            {open ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
+            {open ? (
+              <X className="size-5" aria-hidden="true" />
+            ) : (
+              <Menu className="size-5" aria-hidden="true" />
+            )}
           </button>
         </div>
       </div>
-
 
       {open && (
         <nav

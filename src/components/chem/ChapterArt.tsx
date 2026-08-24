@@ -67,7 +67,16 @@ function FundamentosArt({ chapter }: { chapter: number }) {
       </g>
       <g style={{ transformOrigin: "180px 120px", transform: `rotate(${rot}deg)` }}>
         {nodes.map((n) => (
-          <line key={n.label} x1="180" y1="120" x2={n.x} y2={n.y} stroke={CYAN} strokeWidth="1" opacity="0.55" />
+          <line
+            key={n.label}
+            x1="180"
+            y1="120"
+            x2={n.x}
+            y2={n.y}
+            stroke={CYAN}
+            strokeWidth="1"
+            opacity="0.55"
+          />
         ))}
       </g>
       <g className="art-float">
@@ -77,7 +86,11 @@ function FundamentosArt({ chapter }: { chapter: number }) {
       </g>
       {nodes.map((n, i) => (
         <g key={n.label} className="art-fade" style={{ animationDelay: `${300 + i * 220}ms` }}>
-          <polygon points={hex(n.x, n.y, 22)} stroke={i === 1 ? CYAN : i === 2 ? GREEN : DEEP} strokeWidth="1.3" />
+          <polygon
+            points={hex(n.x, n.y, 22)}
+            stroke={i === 1 ? CYAN : i === 2 ? GREEN : DEEP}
+            strokeWidth="1.3"
+          />
           <Label x={n.x - 26} y={n.y + 42} text={n.label} fill="currentColor" size={10} />
         </g>
       ))}
@@ -105,7 +118,15 @@ function FenolArt({ chapter }: { chapter: number }) {
       <g className="art-float">
         <polygon points={hex(150, 120, 62)} stroke={CYAN} strokeWidth="2" strokeLinejoin="round" />
         <circle cx="150" cy="120" r="36" stroke={CYAN} strokeWidth="1.3" opacity="0.75" />
-        <line x1="212" y1="120" x2="256" y2="120" stroke={CYAN} strokeWidth="2" className="art-draw" />
+        <line
+          x1="212"
+          y1="120"
+          x2="256"
+          y2="120"
+          stroke={CYAN}
+          strokeWidth="2"
+          className="art-draw"
+        />
         <Label x={262} y={126} text="OH" size={20} />
         {positions.map((p) => (
           <circle key={p.n} cx={p.x} cy={p.y} r="3" fill={CYAN} stroke="none" opacity="0.8" />
@@ -163,7 +184,15 @@ function AplicacoesArt({ chapter }: { chapter: number }) {
   const steps = Math.min(4, Math.max(2, chapter - 15));
   return (
     <g fill="none">
-      <line x1="150" y1="20" x2="150" y2="220" stroke="currentColor" opacity="0.16" strokeWidth="0.8" />
+      <line
+        x1="150"
+        y1="20"
+        x2="150"
+        y2="220"
+        stroke="currentColor"
+        opacity="0.16"
+        strokeWidth="0.8"
+      />
       <g className="art-float">
         <polygon points={hex(80, 110, 42)} stroke={CYAN} strokeWidth="1.8" />
         <circle cx="80" cy="110" r="24" stroke={CYAN} strokeWidth="1.1" opacity="0.7" />

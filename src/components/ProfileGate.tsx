@@ -39,17 +39,31 @@ export function ProfileGate() {
   const editing = profiles.find((p) => p.id === editingId) ?? null;
 
   return (
-    <main className="paper-grain relative min-h-screen bg-ink">
-      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-5xl flex-col justify-center px-5 py-16 sm:px-8">
-        <header className="mb-12 text-center sm:mb-16">
-          <p className="kicker">Química Orgânica · Apresentação interativa · 2026</p>
-          <h1 className="mt-6 font-display text-3xl tracking-[0.18em] text-foreground sm:text-5xl">
-            QUEM ESTÁ APRESENTANDO?
-          </h1>
-          <div className="hairline mx-auto mt-8 max-w-xs" />
+    <main className="profile-stage paper-grain relative min-h-screen bg-ink">
+      <div
+        className="pointer-events-none absolute inset-0 wave-marks opacity-50"
+        aria-hidden="true"
+      />
+      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-6xl flex-col justify-center px-5 py-20 sm:px-8 lg:py-24">
+        <header className="mb-12 max-w-3xl sm:mb-16">
+          <p className="kicker text-crimson">Química Orgânica · Apresentação interativa · 2026</p>
+          <div className="mt-6 flex items-end justify-between gap-6">
+            <h1 className="font-display text-3xl leading-none tracking-[0.12em] text-foreground sm:text-6xl">
+              QUEM ESTÁ
+              <br />
+              <span className="text-crimson">APRESENTANDO?</span>
+            </h1>
+            <span className="hidden pb-1 font-mono text-[0.58rem] tracking-[0.2em] text-muted-foreground sm:block">
+              ORG / 04
+            </span>
+          </div>
+          <div className="hairline mt-8 max-w-xl" />
+          <p className="mt-5 max-w-md text-sm leading-relaxed text-muted-foreground">
+            Escolha um perfil para abrir a sequência de capítulos atribuída a cada participante.
+          </p>
         </header>
 
-        <ul className="grid grid-cols-2 gap-6 sm:gap-8 md:grid-cols-4">
+        <ul className="grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4">
           {profiles.map((profile) => {
             const active = profile.id === selectedId;
             return (
@@ -110,7 +124,11 @@ export function ProfileGate() {
             <button
               type="button"
               onClick={() => {
-                if (window.confirm("Resetar o progresso deste perfil? Esta ação não altera o nome ou a foto.")) {
+                if (
+                  window.confirm(
+                    "Resetar o progresso deste perfil? Esta ação não altera o nome ou a foto.",
+                  )
+                ) {
                   resetWatchState(selectedId);
                 }
               }}
@@ -210,10 +228,7 @@ function EditProfileDialog({
           />
           <div className="min-w-0 space-y-4">
             <div>
-              <label
-                htmlFor="profile-name"
-                className="kicker mb-2 block text-[0.6rem]"
-              >
+              <label htmlFor="profile-name" className="kicker mb-2 block text-[0.6rem]">
                 Nome
               </label>
               <input
@@ -227,10 +242,7 @@ function EditProfileDialog({
               />
             </div>
             <div>
-              <label
-                htmlFor="profile-image"
-                className="kicker mb-2 block text-[0.6rem]"
-              >
+              <label htmlFor="profile-image" className="kicker mb-2 block text-[0.6rem]">
                 Imagem
               </label>
               <input
