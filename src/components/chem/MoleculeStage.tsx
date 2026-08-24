@@ -113,12 +113,26 @@ export function sceneForChapter(chapter: number): MoleculeScene | null {
   return null;
 }
 
-function Hex({ cx, cy, r, stroke, width = 1.8 }: { cx: number; cy: number; r: number; stroke: string; width?: number }) {
+function Hex({
+  cx,
+  cy,
+  r,
+  stroke,
+  width = 1.8,
+}: {
+  cx: number;
+  cy: number;
+  r: number;
+  stroke: string;
+  width?: number;
+}) {
   const pts = Array.from({ length: 6 }, (_, i) => {
     const a = (Math.PI / 3) * i - Math.PI / 2;
     return `${cx + r * Math.cos(a)},${cy + r * Math.sin(a)}`;
   }).join(" ");
-  return <polygon points={pts} fill="none" stroke={stroke} strokeWidth={width} strokeLinejoin="round" />;
+  return (
+    <polygon points={pts} fill="none" stroke={stroke} strokeWidth={width} strokeLinejoin="round" />
+  );
 }
 
 /** anéis abstratos gigantes, baixa opacidade — profundidade de fundo */
@@ -179,7 +193,10 @@ export function MoleculeStage({
         />
 
         <div className="lab-field relative overflow-hidden rounded-sm border border-border/70 shadow-[0_40px_90px_-50px_oklch(0_0_0/90%)]">
-          <div aria-hidden="true" className="tech-grid animate-lab-drift pointer-events-none absolute inset-0" />
+          <div
+            aria-hidden="true"
+            className="tech-grid animate-lab-drift pointer-events-none absolute inset-0"
+          />
 
           <svg
             viewBox={`0 0 ${W} ${H}`}
@@ -212,10 +229,19 @@ export function MoleculeStage({
               {scene === "fenol" && (
                 <>
                   <g
-                    style={{ opacity: dim(current.highlight !== "oh"), transition: "opacity 800ms ease" }}
+                    style={{
+                      opacity: dim(current.highlight !== "oh"),
+                      transition: "opacity 800ms ease",
+                    }}
                     filter={current.highlight === "ring" ? glow : undefined}
                   >
-                    <Hex cx={122} cy={112} r={44} stroke={current.highlight === "ring" ? CYAN : DEEP} width={2.2} />
+                    <Hex
+                      cx={122}
+                      cy={112}
+                      r={44}
+                      stroke={current.highlight === "ring" ? CYAN : DEEP}
+                      width={2.2}
+                    />
                     <circle
                       cx={122}
                       cy={112}
@@ -227,7 +253,10 @@ export function MoleculeStage({
                     />
                   </g>
                   <g
-                    style={{ opacity: dim(current.highlight !== "ring"), transition: "opacity 800ms ease" }}
+                    style={{
+                      opacity: dim(current.highlight !== "ring"),
+                      transition: "opacity 800ms ease",
+                    }}
                     filter={current.highlight === "oh" ? glow : undefined}
                   >
                     <line
@@ -253,7 +282,12 @@ export function MoleculeStage({
 
               {scene === "enol" && (
                 <>
-                  <g style={{ opacity: dim(current.highlight !== "oh"), transition: "opacity 800ms ease" }}>
+                  <g
+                    style={{
+                      opacity: dim(current.highlight !== "oh"),
+                      transition: "opacity 800ms ease",
+                    }}
+                  >
                     <line x1={70} y1={140} x2={120} y2={110} stroke={DEEP} strokeWidth="2.2" />
                     <g
                       stroke={current.highlight === "cc" ? CYAN : DEEP}
@@ -266,7 +300,10 @@ export function MoleculeStage({
                     <line x1={180} y1={140} x2={230} y2={112} stroke={DEEP} strokeWidth="2.2" />
                   </g>
                   <g
-                    style={{ opacity: dim(current.highlight !== "cc"), transition: "opacity 800ms ease" }}
+                    style={{
+                      opacity: dim(current.highlight !== "cc"),
+                      transition: "opacity 800ms ease",
+                    }}
                     filter={current.highlight === "oh" ? glow : undefined}
                   >
                     <line
@@ -294,7 +331,10 @@ export function MoleculeStage({
                 <>
                   {/* enol */}
                   <g
-                    style={{ opacity: dim(current.highlight !== "keto"), transition: "opacity 800ms ease" }}
+                    style={{
+                      opacity: dim(current.highlight !== "keto"),
+                      transition: "opacity 800ms ease",
+                    }}
                     filter={current.highlight === "enol" ? glow : undefined}
                   >
                     <g stroke={current.highlight === "enol" ? CYAN : DEEP} strokeWidth="2.2">
@@ -312,7 +352,14 @@ export function MoleculeStage({
                     >
                       OH
                     </text>
-                    <text x={54} y={172} fill={GREEN} fontSize="10" fontFamily="var(--font-sans)" letterSpacing="2">
+                    <text
+                      x={54}
+                      y={172}
+                      fill={GREEN}
+                      fontSize="10"
+                      fontFamily="var(--font-sans)"
+                      letterSpacing="2"
+                    >
                       ENOL
                     </text>
                   </g>
@@ -333,7 +380,10 @@ export function MoleculeStage({
 
                   {/* ceto */}
                   <g
-                    style={{ opacity: dim(current.highlight !== "enol"), transition: "opacity 800ms ease" }}
+                    style={{
+                      opacity: dim(current.highlight !== "enol"),
+                      transition: "opacity 800ms ease",
+                    }}
                     filter={current.highlight === "keto" ? glow : undefined}
                   >
                     <g stroke={current.highlight === "keto" ? CYAN : DEEP} strokeWidth="2.2">
@@ -351,7 +401,14 @@ export function MoleculeStage({
                     >
                       O
                     </text>
-                    <text x={210} y={172} fill={GREEN} fontSize="10" fontFamily="var(--font-sans)" letterSpacing="2">
+                    <text
+                      x={210}
+                      y={172}
+                      fill={GREEN}
+                      fontSize="10"
+                      fontFamily="var(--font-sans)"
+                      letterSpacing="2"
+                    >
                       CETO
                     </text>
                   </g>
@@ -364,7 +421,9 @@ export function MoleculeStage({
           <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-3 sm:p-4">
             <div key={current.label} className="reveal reveal-1 glass-panel px-3 py-2">
               <p className="text-[0.5rem] tracking-[0.3em] text-crimson uppercase">{data.title}</p>
-              <p className="mt-1 text-[0.68rem] tracking-[0.14em] text-foreground uppercase">{current.callout}</p>
+              <p className="mt-1 text-[0.68rem] tracking-[0.14em] text-foreground uppercase">
+                {current.callout}
+              </p>
             </div>
             <p className="font-display text-[0.62rem] tracking-[0.3em] text-muted-foreground">
               {String(step + 1).padStart(2, "0")} / {String(data.steps.length).padStart(2, "0")}
@@ -381,7 +440,11 @@ export function MoleculeStage({
         </div>
       </div>
 
-      <p key={current.caption} aria-live="polite" className="reveal reveal-2 min-h-[3rem] text-sm leading-relaxed text-foreground/85">
+      <p
+        key={current.caption}
+        aria-live="polite"
+        className="reveal reveal-2 min-h-[3rem] text-sm leading-relaxed text-foreground/85"
+      >
         {current.caption}
       </p>
 

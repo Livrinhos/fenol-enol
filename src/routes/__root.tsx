@@ -80,12 +80,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Química Orgânica — Apresentação interativa" },
       {
         name: "description",
-        content: "Funções orgânicas, grupos funcionais, nomenclatura, aplicações, fenol e enol em 20 capítulos.",
+        content:
+          "Funções orgânicas, grupos funcionais, nomenclatura, aplicações, fenol e enol em 20 capítulos.",
       },
       { property: "og:title", content: "Química Orgânica — Apresentação interativa" },
       {
         property: "og:description",
-        content: "Funções orgânicas, grupos funcionais, nomenclatura, aplicações, fenol e enol em 20 capítulos.",
+        content:
+          "Funções orgânicas, grupos funcionais, nomenclatura, aplicações, fenol e enol em 20 capítulos.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

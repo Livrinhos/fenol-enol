@@ -11,7 +11,6 @@ import {
   findPresentationChapter,
 } from "@/lib/presentationContent";
 
-
 export const Route = createFileRoute("/capitulo/$n")({
   head: () => ({
     meta: [
@@ -110,8 +109,6 @@ function ChapterScreen() {
       <main key={chapter.number} className="animate-archive-in">
         <ChapterHero chapter={chapter} part={part} actions={actions} />
 
-
-
         {/* Conteúdo do capítulo */}
         <section className="mx-auto w-full max-w-[100rem] px-5 py-14 sm:px-10">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
@@ -155,7 +152,9 @@ function ChapterScreen() {
                       <span className="font-display text-sm tracking-[0.2em] text-crimson">
                         {String(c.number).padStart(2, "0")}
                       </span>
-                      <span className="text-xs leading-relaxed tracking-[0.08em] uppercase">{c.title}</span>
+                      <span className="text-xs leading-relaxed tracking-[0.08em] uppercase">
+                        {c.title}
+                      </span>
                     </Link>
                   </li>
                 ))}

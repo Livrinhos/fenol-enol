@@ -16,7 +16,8 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Química Orgânica — Apresentação interativa" },
       {
         property: "og:description",
-        content: "20 capítulos sobre funções orgânicas, fenol e enol, divididos entre 4 participantes.",
+        content:
+          "20 capítulos sobre funções orgânicas, fenol e enol, divididos entre 4 participantes.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
