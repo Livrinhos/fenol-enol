@@ -53,13 +53,10 @@ export function ProfileGate() {
               <br />
               <span className="text-crimson">APRESENTANDO?</span>
             </h1>
-            <span className="hidden pb-1 font-mono text-[0.58rem] tracking-[0.2em] text-muted-foreground sm:block">
-              ORG / 04
-            </span>
           </div>
           <div className="hairline mt-8 max-w-xl" />
           <p className="mt-5 max-w-md text-sm leading-relaxed text-muted-foreground">
-            Escolha um perfil para abrir a sequência de capítulos atribuída a cada participante.
+            Escolha um perfil
           </p>
         </header>
 
