@@ -44,7 +44,7 @@ export function ProfileGate() {
         className="pointer-events-none absolute inset-0 wave-marks opacity-50"
         aria-hidden="true"
       />
-      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-6xl flex-col justify-center px-5 py-20 sm:px-8 lg:py-24">
+      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl flex-col justify-center px-5 py-20 sm:px-8 lg:py-24">
         <header className="mb-12 max-w-3xl sm:mb-16">
           <p className="kicker text-crimson">Química Orgânica · Apresentação interativa · 2026</p>
           <div className="mt-6 flex items-end justify-between gap-6">

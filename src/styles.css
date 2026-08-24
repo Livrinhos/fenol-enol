@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * YAKUZA ARCHIVE — Japan / crime documentary design system.
- * Black dominant, crimson accent, minimal gold. All colors in oklch.
+ * FENOL & ENOL — documentário científico interativo.
+ * Grafite profundo, ciano elétrico e âmbar de laboratório. Tudo em oklch.
  */
 
 @theme inline {
@@ -60,12 +60,12 @@
 
 :root {
   /* raw palette — química orgânica */
-  --ink: oklch(0.196 0.024 210); /* #071014 */
-  --surface: oklch(0.234 0.021 205); /* #0B1518 */
-  --elevated: oklch(0.28 0.02 205);
-  --blood: oklch(0.42 0.076 226); /* #0A5A73 azul profundo */
-  --crimson: oklch(0.639 0.093 208); /* #17A6B8 ciano acento */
-  --gold: oklch(0.664 0.083 141); /* #6EA66D verde químico */
+  --ink: oklch(0.15 0.025 220); /* grafite profundo */
+  --surface: oklch(0.205 0.03 220); /* superfície azulada */
+  --elevated: oklch(0.26 0.035 220);
+  --blood: oklch(0.34 0.08 224); /* azul petróleo */
+  --crimson: oklch(0.76 0.14 193); /* ciano elétrico */
+  --gold: oklch(0.78 0.13 82); /* âmbar de laboratório */
 
   --background: var(--ink);
   --foreground: oklch(0.963 0.005 160); /* #F3F6F4 */
@@ -79,7 +79,7 @@
   --secondary: var(--elevated);
   --secondary-foreground: oklch(0.951 0.008 92);
   --muted: var(--elevated);
-  --muted-foreground: oklch(0.68 0 0); /* readable grey */
+  --muted-foreground: oklch(0.72 0.025 205); /* cinza azulado legível */
   --accent: var(--gold);
   --accent-foreground: var(--ink);
   --destructive: oklch(0.55 0.21 27.5);
@@ -419,7 +419,7 @@
 @utility glass-panel {
   background: color-mix(in oklab, var(--color-surface) 62%, transparent);
   backdrop-filter: blur(14px) saturate(140%);
-  border: 1px solid color-mix(in oklab, var(--color-foreground) 12%, transparent);
+  border: 1px solid color-mix(in oklab, var(--color-crimson) 20%, transparent);
   box-shadow:
     inset 0 1px 0 color-mix(in oklab, var(--color-foreground) 8%, transparent),
     0 22px 50px -28px oklch(0 0 0 / 80%);

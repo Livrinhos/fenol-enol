@@ -65,7 +65,7 @@ function Catalogo() {
           <div className="absolute inset-0 bg-[linear-gradient(90deg,var(--color-ink)_20%,color-mix(in_oklab,var(--color-ink)_82%,transparent)_58%,transparent)]" />
         </div>
 
-        <div className="relative mx-auto flex min-h-[62svh] w-full max-w-[100rem] flex-col justify-end px-5 pb-12 pt-32 sm:px-10 sm:pb-16">
+        <div className="relative mx-auto flex min-h-[68svh] w-full max-w-[100rem] flex-col justify-end px-5 pb-12 pt-32 sm:px-10 sm:pb-16">
           <p className="kicker">Apresentação interativa · 20 capítulos · ~20 min</p>
           <h1 className="mt-6 max-w-4xl font-display text-3xl leading-[1.05] tracking-[0.1em] text-foreground sm:text-6xl">
             FUNÇÕES ORGÂNICAS

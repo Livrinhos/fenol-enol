@@ -78,7 +78,7 @@ export function OpeningSequence({ onFinish }: { onFinish: () => void }) {
         <div key={index} className="animate-archive-in">
           {step?.kicker && <p className="kicker text-[0.6rem] sm:text-xs">{step.kicker}</p>}
           {step?.title && (
-            <h1 className="font-display text-5xl leading-none tracking-[0.28em] text-foreground sm:text-7xl md:text-8xl">
+            <h1 className="font-display text-5xl leading-none tracking-[0.22em] text-foreground sm:text-7xl md:text-8xl">
               {step.title}
             </h1>
           )}

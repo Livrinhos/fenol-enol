@@ -40,7 +40,7 @@ export function SiteHeader() {
           to="/"
           className="min-w-0 font-display text-[0.8rem] tracking-[0.4em] text-foreground uppercase sm:text-sm"
         >
-          Química <span className="text-crimson">Orgânica</span>
+          FENOL <span className="text-crimson">&amp;</span> ENOL
         </Link>
 
         <nav aria-label="Navegação principal" className="hidden lg:block">
