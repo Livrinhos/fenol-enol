@@ -13,18 +13,9 @@ type Props = {
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
-function Visual({
-  chapter,
-  part,
-}: {
-  chapter: number;
-  part: 1 | 2 | 3 | 4;
-}) {
+function Visual({ chapter, part }: { chapter: number; part: 1 | 2 | 3 | 4 }) {
   const scene = sceneForChapter(chapter);
-  if (scene) {
-    return <MoleculeStage scene={scene} className="h-full w-full" />;
-  }
-
+  if (scene) return <MoleculeStage scene={scene} className="h-full w-full" />;
   return (
     <ChapterArt
       chapter={chapter}
@@ -47,9 +38,7 @@ function Subtitle({ text }: { text: string }) {
   return (
     <div className="mt-6 flex items-center gap-3">
       <span className="h-px w-10 bg-cyan-300/70" />
-      <p className="text-[0.62rem] tracking-[0.3em] text-cyan-200/80 uppercase sm:text-xs">
-        {text}
-      </p>
+      <p className="text-[0.62rem] tracking-[0.3em] text-cyan-200/80 uppercase sm:text-xs">{text}</p>
     </div>
   );
 }
@@ -59,10 +48,7 @@ function Bullets({ items }: { items: string[] }) {
   return (
     <ul className="mt-8 flex flex-wrap gap-x-7 gap-y-3">
       {items.map((item) => (
-        <li
-          key={item}
-          className="flex items-center gap-2 text-[0.62rem] tracking-[0.13em] text-white/55 uppercase"
-        >
+        <li key={item} className="flex items-center gap-2 text-[0.62rem] tracking-[0.13em] text-white/55 uppercase">
           <span className="size-1 rounded-full bg-cyan-300" aria-hidden="true" />
           {item}
         </li>
@@ -73,10 +59,7 @@ function Bullets({ items }: { items: string[] }) {
 
 export function ChapterHero({ chapter, part, actions, mode = "page" }: Props) {
   const minHeight = mode === "present" ? "min-h-[calc(100svh-6rem)]" : "min-h-[calc(100svh-5rem)]";
-  const titleSize =
-    mode === "present"
-      ? "text-[2.8rem] sm:text-6xl lg:text-[5.2rem]"
-      : "text-[2.7rem] sm:text-6xl lg:text-[5.4rem]";
+  const titleSize = mode === "present" ? "text-[2.8rem] sm:text-6xl lg:text-[5.2rem]" : "text-[2.7rem] sm:text-6xl lg:text-[5.4rem]";
 
   return (
     <section className={`relative isolate overflow-hidden border-b border-white/10 bg-[#020a0d] ${minHeight}`}>
@@ -90,30 +73,20 @@ export function ChapterHero({ chapter, part, actions, mode = "page" }: Props) {
         <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#010507] to-transparent" />
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-inherit w-full max-w-[110rem] flex-col justify-between px-6 pb-10 pt-28 sm:px-10 sm:pt-32 lg:px-14 lg:pb-12">
+      <div className="relative z-10 mx-auto flex w-full max-w-[110rem] flex-col justify-between px-6 pb-10 pt-28 sm:px-10 sm:pt-32 lg:px-14 lg:pb-12">
         <div className="max-w-5xl">
           <Meta chapter={chapter} part={part} />
-
           <div className="mt-10 max-w-5xl">
-            <p className="text-xs tracking-[0.42em] text-cyan-300 uppercase sm:text-sm">
-              {part.title}
-            </p>
-            <h1
-              className={`mt-5 max-w-5xl font-display leading-[0.92] tracking-[0.035em] text-white [text-shadow:0_18px_55px_rgba(0,0,0,0.8)] ${titleSize}`}
-            >
+            <p className="text-xs tracking-[0.42em] text-cyan-300 uppercase sm:text-sm">{part.title}</p>
+            <h1 className={`mt-5 max-w-5xl font-display leading-[0.92] tracking-[0.035em] text-white [text-shadow:0_18px_55px_rgba(0,0,0,0.8)] ${titleSize}`}>
               {chapter.title}
             </h1>
             <Subtitle text={chapter.subtitle} />
-            <p className="mt-7 max-w-2xl text-sm leading-relaxed text-white/75 sm:text-base lg:text-lg">
-              {chapter.summary}
-            </p>
+            <p className="mt-7 max-w-2xl text-sm leading-relaxed text-white/75 sm:text-base lg:text-lg">{chapter.summary}</p>
             <Bullets items={chapter.bullets ?? []} />
           </div>
         </div>
-
-        <div className="mt-12 flex flex-wrap items-center gap-3">
-          {actions}
-        </div>
+        <div className="mt-12 flex flex-wrap items-center gap-3">{actions}</div>
       </div>
 
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 flex items-center justify-between border-t border-white/10 px-6 py-3 text-[0.52rem] tracking-[0.28em] text-white/35 uppercase sm:px-10">
