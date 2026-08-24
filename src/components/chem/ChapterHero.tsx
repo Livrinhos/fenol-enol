@@ -7,107 +7,64 @@ import type { PresentationChapter, PresentationPart } from "@/lib/presentationCo
 type Props = {
   chapter: PresentationChapter;
   part: PresentationPart;
-  /** ações (apresentar/anterior/próximo) renderizadas dentro da composição */
   actions?: ReactNode;
-  /** modo apresentação: sem CTA, tipografia maior, sem padding de header */
   mode?: "page" | "present";
 };
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
-/** Camadas de atmosfera: profundidade, luz e grão — idênticas nos 20 capítulos */
-function Atmosphere() {
-  return (
-    <div className="pointer-events-none absolute inset-0">
-      <div className="lab-field absolute inset-0" />
-      <div className="tech-grid animate-lab-drift absolute inset-0" />
-      <div className="stage-light absolute inset-0" />
-      <div className="wave-marks absolute inset-0 opacity-50" />
-      <div className="stage-vignette absolute inset-0" />
-    </div>
-  );
-}
-
-/** bloco visual central: cena molecular quando existe, senão a arte do bloco */
 function Visual({
   chapter,
   part,
-  className,
-  poster,
 }: {
   chapter: number;
   part: 1 | 2 | 3 | 4;
-  className?: string;
-  poster?: boolean;
 }) {
   const scene = sceneForChapter(chapter);
-  if (scene) return <MoleculeStage scene={scene} className={className} />;
+  if (scene) {
+    return <MoleculeStage scene={scene} className="h-full w-full" />;
+  }
+
   return (
-    <div className={`relative ${className ?? ""}`}>
-      <div aria-hidden="true" className="stage-halo animate-glow-breathe absolute inset-[-12%]" />
-      <ChapterArt
-        chapter={chapter}
-        part={part}
-        variant={poster ? "poster" : "stage"}
-        className="relative w-full text-foreground"
-      />
-    </div>
+    <ChapterArt
+      chapter={chapter}
+      part={part}
+      variant="poster"
+      className="h-full w-full text-foreground"
+    />
   );
 }
 
 function Meta({ chapter, part }: { chapter: PresentationChapter; part: PresentationPart }) {
   return (
-    <p className="kicker reveal reveal-1">
-      EP. {pad(chapter.number)} / {TOTAL_CHAPTERS} · PARTE {part.number} — {part.title} ·{" "}
-      {part.presenter}
+    <p className="font-mono text-[0.58rem] tracking-[0.34em] text-cyan-200/70 uppercase sm:text-[0.65rem]">
+      EP. {pad(chapter.number)} / {TOTAL_CHAPTERS} · PARTE {part.number} — {part.title} · {part.presenter}
     </p>
   );
 }
 
 function Subtitle({ text }: { text: string }) {
   return (
-    <div className="reveal reveal-3 mt-5 flex items-center gap-3">
-      <span className="h-px w-8 bg-crimson" />
-      <p className="text-[0.62rem] tracking-[0.3em] text-crimson uppercase sm:text-xs">{text}</p>
+    <div className="mt-6 flex items-center gap-3">
+      <span className="h-px w-10 bg-cyan-300/70" />
+      <p className="text-[0.62rem] tracking-[0.3em] text-cyan-200/80 uppercase sm:text-xs">
+        {text}
+      </p>
     </div>
   );
 }
 
-function Bullets({ items, layout }: { items: string[]; layout: "inline" | "columns" | "stack" }) {
-  if (items.length === 0) return null;
-  if (layout === "inline")
-    return (
-      <ul className="reveal reveal-5 mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
-        {items.map((b) => (
-          <li
-            key={b}
-            className="flex items-center gap-3 text-[0.68rem] tracking-[0.14em] text-muted-foreground uppercase"
-          >
-            <span className="size-1 rounded-full bg-crimson" aria-hidden="true" />
-            {b}
-          </li>
-        ))}
-      </ul>
-    );
-  if (layout === "columns")
-    return (
-      <ul className="reveal reveal-5 mt-10 grid gap-px overflow-hidden border border-border sm:grid-cols-2 lg:grid-cols-4">
-        {items.map((b, i) => (
-          <li key={b} className="bg-surface/40 px-4 py-5 backdrop-blur-sm">
-            <span className="font-display text-xs tracking-[0.2em] text-crimson">{pad(i + 1)}</span>
-            <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{b}</p>
-          </li>
-        ))}
-      </ul>
-    );
+function Bullets({ items }: { items: string[] }) {
+  if (!items.length) return null;
   return (
-    <ul className="reveal reveal-5 mt-8 grid gap-2.5">
-      {items.map((b) => (
+    <ul className="mt-8 flex flex-wrap gap-x-7 gap-y-3">
+      {items.map((item) => (
         <li
-          key={b}
-          className="border-l border-crimson/60 pl-3 text-xs leading-relaxed text-muted-foreground sm:text-sm"
+          key={item}
+          className="flex items-center gap-2 text-[0.62rem] tracking-[0.13em] text-white/55 uppercase"
         >
-          {b}
+          <span className="size-1 rounded-full bg-cyan-300" aria-hidden="true" />
+          {item}
         </li>
       ))}
     </ul>
@@ -115,175 +72,53 @@ function Bullets({ items, layout }: { items: string[]; layout: "inline" | "colum
 }
 
 export function ChapterHero({ chapter, part, actions, mode = "page" }: Props) {
-  const bullets = chapter.bullets ?? [];
-  const topPad = mode === "present" ? "pt-8 sm:pt-10" : "pt-28 sm:pt-32";
-  const minH = mode === "present" ? "min-h-[calc(100svh-9rem)]" : "min-h-[84svh] lg:min-h-[92svh]";
+  const minHeight = mode === "present" ? "min-h-[calc(100svh-6rem)]" : "min-h-[calc(100svh-5rem)]";
   const titleSize =
     mode === "present"
-      ? "text-[2.1rem] sm:text-6xl lg:text-[4.6rem]"
-      : "text-3xl sm:text-5xl lg:text-[4rem]";
+      ? "text-[2.8rem] sm:text-6xl lg:text-[5.2rem]"
+      : "text-[2.7rem] sm:text-6xl lg:text-[5.4rem]";
 
-  const shell = `relative mx-auto w-full max-w-[100rem] px-5 pb-14 sm:px-10 ${topPad} ${minH}`;
-
-  /* ── PARTE 1 · centrado, diagrama de fundo, espaço negativo ─────── */
-  if (part.number === 1) {
-    return (
-      <section className="relative overflow-hidden border-b border-border">
-        <Atmosphere />
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <Visual
-            chapter={chapter.number}
-            part={part.number}
-            poster
-            className="h-full w-[min(96%,72rem)] opacity-80"
-          />
-        </div>
-        <div className={`${shell} flex flex-col items-center justify-center text-center`}>
-          <Meta chapter={chapter} part={part} />
-          <h1
-            className={`reveal reveal-2 mt-7 max-w-4xl font-display leading-[1.04] tracking-[0.06em] text-foreground [text-shadow:0_20px_60px_oklch(0_0_0/70%)] ${titleSize}`}
-          >
-            {chapter.title}
-          </h1>
-          <div className="flex justify-center">
-            <Subtitle text={chapter.subtitle} />
-          </div>
-          <p className="reveal reveal-4 mt-7 max-w-2xl text-sm leading-relaxed text-foreground/85 sm:text-base">
-            {chapter.summary}
-          </p>
-          <Bullets items={bullets} layout="inline" />
-          {actions && (
-            <div className="reveal reveal-5 mt-10 flex flex-wrap items-center justify-center gap-3">
-              {actions}
-            </div>
-          )}
-        </div>
-      </section>
-    );
-  }
-
-  /* ── PARTE 2 · molécula protagonista, texto em rodapé sobreposto ── */
-  if (part.number === 2) {
-    return (
-      <section className="relative overflow-hidden border-b border-border">
-        <Atmosphere />
-        <div className={`${shell} grid content-between gap-10`}>
-          <div className="flex items-start justify-between gap-6">
-            <Meta chapter={chapter} part={part} />
-            <span
-              aria-hidden="true"
-              className="numeral-ghost hidden text-[7rem] tracking-tight sm:block lg:text-[10rem]"
-            >
-              {pad(chapter.number)}
-            </span>
-          </div>
-          <div className="frame-ticks mx-auto w-full max-w-3xl px-6 py-2">
-            <Visual chapter={chapter.number} part={part.number} className="w-full" />
-          </div>
-          <div className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-end">
-            <div>
-              <h1
-                className={`reveal reveal-2 font-display leading-[1.04] tracking-[0.06em] text-foreground [text-shadow:0_20px_60px_oklch(0_0_0/70%)] ${titleSize}`}
-              >
-                {chapter.title}
-              </h1>
-              <Subtitle text={chapter.subtitle} />
-              {actions && (
-                <div className="reveal reveal-5 mt-8 flex flex-wrap items-center gap-3">
-                  {actions}
-                </div>
-              )}
-            </div>
-            <div>
-              <p className="reveal reveal-4 text-sm leading-relaxed text-foreground/85 sm:text-base">
-                {chapter.summary}
-              </p>
-              <Bullets items={bullets} layout="stack" />
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  /* ── PARTE 3 · transformação: arte no topo, tipografia abaixo ───── */
-  if (part.number === 3) {
-    return (
-      <section className="relative overflow-hidden border-b border-border">
-        <Atmosphere />
-        <div className={`${shell} flex flex-col justify-center`}>
-          <Meta chapter={chapter} part={part} />
-          <div className="reveal reveal-3 mt-8 w-full">
-            <Visual
-              chapter={chapter.number}
-              part={part.number}
-              className="mx-auto w-full max-w-4xl"
-            />
-          </div>
-          <div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:items-start">
-            <div>
-              <h1
-                className={`reveal reveal-2 font-display leading-[1.04] tracking-[0.06em] text-foreground [text-shadow:0_20px_60px_oklch(0_0_0/70%)] ${titleSize}`}
-              >
-                {chapter.title}
-              </h1>
-              <Subtitle text={chapter.subtitle} />
-            </div>
-            <div>
-              <p className="reveal reveal-4 max-w-2xl text-sm leading-relaxed text-foreground/85 sm:text-base">
-                {chapter.summary}
-              </p>
-              <Bullets items={bullets} layout="stack" />
-              {actions && (
-                <div className="reveal reveal-5 mt-8 flex flex-wrap items-center gap-3">
-                  {actions}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  /* ── PARTE 4 · editorial de síntese: numeral, comparativo, grade ── */
   return (
-    <section className="relative overflow-hidden border-b border-border">
-      <Atmosphere />
-      <div className={`${shell} flex flex-col justify-center`}>
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:items-center">
-          <div>
-            <Meta chapter={chapter} part={part} />
-            <div className="mt-6 flex items-start gap-5">
-              <span
-                aria-hidden="true"
-                className="numeral-ghost shrink-0 text-[3.5rem] sm:text-[5.5rem] lg:text-[7rem]"
-              >
-                {pad(chapter.number)}
-              </span>
-              <div>
-                <h1
-                  className={`reveal reveal-2 font-display leading-[1.04] tracking-[0.06em] text-foreground [text-shadow:0_20px_60px_oklch(0_0_0/70%)] ${titleSize}`}
-                >
-                  {chapter.title}
-                </h1>
-                <Subtitle text={chapter.subtitle} />
-              </div>
-            </div>
-            <p className="reveal reveal-4 mt-7 max-w-2xl text-sm leading-relaxed text-foreground/85 sm:text-base">
+    <section className={`relative isolate overflow-hidden border-b border-white/10 bg-[#020a0d] ${minHeight}`}>
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_52%_48%,rgba(11,184,215,0.13),transparent_28%),radial-gradient(circle_at_82%_45%,rgba(17,102,118,0.2),transparent_32%),linear-gradient(180deg,#031116_0%,#020a0d_62%,#010507_100%)]" />
+        <div className="absolute inset-0 opacity-60 [background-image:linear-gradient(rgba(90,210,225,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(90,210,225,0.045)_1px,transparent_1px)] [background-size:72px_72px]" />
+        <div className="absolute right-[-9%] top-[7%] h-[86%] w-[62%] opacity-65 sm:right-[-3%] sm:w-[57%]">
+          <Visual chapter={chapter.number} part={part.number} />
+        </div>
+        <div className="absolute inset-y-0 left-0 w-[78%] bg-[linear-gradient(90deg,rgba(1,7,9,0.98)_0%,rgba(1,7,9,0.94)_38%,rgba(1,7,9,0.62)_67%,transparent_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#010507] to-transparent" />
+      </div>
+
+      <div className="relative z-10 mx-auto flex min-h-inherit w-full max-w-[110rem] flex-col justify-between px-6 pb-10 pt-28 sm:px-10 sm:pt-32 lg:px-14 lg:pb-12">
+        <div className="max-w-5xl">
+          <Meta chapter={chapter} part={part} />
+
+          <div className="mt-10 max-w-5xl">
+            <p className="text-xs tracking-[0.42em] text-cyan-300 uppercase sm:text-sm">
+              {part.title}
+            </p>
+            <h1
+              className={`mt-5 max-w-5xl font-display leading-[0.92] tracking-[0.035em] text-white [text-shadow:0_18px_55px_rgba(0,0,0,0.8)] ${titleSize}`}
+            >
+              {chapter.title}
+            </h1>
+            <Subtitle text={chapter.subtitle} />
+            <p className="mt-7 max-w-2xl text-sm leading-relaxed text-white/75 sm:text-base lg:text-lg">
               {chapter.summary}
             </p>
-            {actions && (
-              <div className="reveal reveal-5 mt-9 flex flex-wrap items-center gap-3">
-                {actions}
-              </div>
-            )}
-          </div>
-          <div className="frame-ticks px-6 py-4">
-            <Visual chapter={chapter.number} part={part.number} className="w-full" />
+            <Bullets items={chapter.bullets ?? []} />
           </div>
         </div>
-        <Bullets items={bullets} layout="columns" />
+
+        <div className="mt-12 flex flex-wrap items-center gap-3">
+          {actions}
+        </div>
+      </div>
+
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 flex items-center justify-between border-t border-white/10 px-6 py-3 text-[0.52rem] tracking-[0.28em] text-white/35 uppercase sm:px-10">
+        <span>Documentário científico · Química Orgânica</span>
+        <span>{pad(chapter.number)} / {TOTAL_CHAPTERS}</span>
       </div>
     </section>
   );
