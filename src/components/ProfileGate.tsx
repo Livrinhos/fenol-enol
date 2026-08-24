@@ -28,7 +28,7 @@ export function ProfileGate() {
     const index = profiles.findIndex((p) => p.id === id);
     const part = parts[index >= 0 ? index : 0];
     const first = part?.chapterRange[0] ?? 1;
-    void navigate({ to: "/capitulo/$n", params: { n: String(first) } });
+    void navigate({ to: "/conteudo", search: { cap: first } });
   };
 
   const persist = (next: Profile[]) => {
