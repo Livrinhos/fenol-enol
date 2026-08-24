@@ -1,7 +1,7 @@
-import avatar1 from "@/assets/avatar-1.jpg";
-import avatar2 from "@/assets/avatar2.png";
-import avatar3 from "@/assets/avatar3.png";
-import avatar4 from "@/assets/avatar4.png";
+import avatar1 from "@/assets/pessoa1.png";
+import avatar2 from "@/assets/pessoa2.png";
+import avatar3 from "@/assets/pessoa3.png";
+import avatar4 from "@/assets/pessoa4.png";
 
 export type Profile = {
   id: string;
@@ -14,10 +14,10 @@ export const SELECTED_KEY = "quimica-organica:selected-profile";
 export const INTRO_KEY = "quimica-organica:intro-seen";
 
 export const defaultProfiles: Profile[] = [
-  { id: "p1", name: "Henrique", image: avatar1 },
-  { id: "p2", name: "Matheus Caio", image: avatar2 },
-  { id: "p3", name: "Victor Antonio", image: avatar3 },
-  { id: "p4", name: "Kaynã", image: avatar4 },
+  { id: "p1", name: "Lucas", image: avatar1 },
+  { id: "p2", name: "Camila", image: avatar2 },
+  { id: "p3", name: "Mylena", image: avatar3 },
+  { id: "p4", name: "Santhiago", image: avatar4 },
 ];
 
 export function loadProfiles(): Profile[] {
