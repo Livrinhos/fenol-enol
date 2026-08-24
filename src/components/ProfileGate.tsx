@@ -39,12 +39,12 @@ export function ProfileGate() {
   const editing = profiles.find((p) => p.id === editingId) ?? null;
 
   return (
-    <main className="profile-stage paper-grain relative min-h-screen bg-ink">
+    <main className="profile-stage relative min-h-screen overflow-hidden bg-ink">
       <div
         className="pointer-events-none absolute inset-0 wave-marks opacity-50"
         aria-hidden="true"
       />
-      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl flex-col justify-center px-5 py-20 sm:px-8 lg:py-24">
+      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-[88rem] flex-col justify-center px-5 py-16 sm:px-10 lg:px-16 lg:py-20">
         <header className="mb-12 max-w-3xl sm:mb-16">
           <p className="kicker text-crimson">Química Orgânica · Apresentação interativa · 2026</p>
           <div className="mt-6 flex items-end justify-between gap-6">

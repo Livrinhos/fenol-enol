@@ -120,13 +120,13 @@ function Catalogo() {
               {p.focus}
             </p>
 
-            <ul className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+            <ul className="mt-8 grid grid-cols-1 gap-0 border-l border-border sm:grid-cols-2 lg:grid-cols-5">
               {chaptersOfPart(p.number).map((c) => (
                 <li key={c.number} className="min-w-0">
                   <Link
                     to="/capitulo/$n"
                     params={{ n: String(c.number) }}
-                    className={`group flex h-full flex-col border transition-colors ${
+                    className={`group flex h-full min-h-72 flex-col border-b border-r border-t-0 border-border transition-colors ${
                       c.number === cap
                         ? "border-crimson bg-surface/10"
                         : "border-border hover:border-crimson/60"
