@@ -2,8 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
-import { ChemVisual } from "@/components/chem/ChemVisual";
-import { MoleculeStage, sceneForChapter } from "@/components/chem/MoleculeStage";
+import { ChapterHero } from "@/components/chem/ChapterHero";
 import {
   TOTAL_CHAPTERS,
   chapters,
@@ -11,6 +10,7 @@ import {
   findPart,
   findPresentationChapter,
 } from "@/lib/presentationContent";
+
 
 export const Route = createFileRoute("/capitulo/$n")({
   head: () => ({
