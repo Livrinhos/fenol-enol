@@ -15,3 +15,8 @@ export const defaultProfiles: Profile[] = [
   { id: "p3", name: "Santhiago", image: avatar4 },
   { id: "p4", name: "Mylena", image: avatar3 },
 ];
+
+// Mantém compatibilidade com componentes antigos, sem qualquer persistência local.
+export function loadProfiles(): Profile[] {
+  return defaultProfiles;
+}
