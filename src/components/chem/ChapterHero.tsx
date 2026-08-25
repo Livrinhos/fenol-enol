@@ -85,25 +85,26 @@ export function ChapterHero({ chapter, part, actions, mode = "page" }: Props) {
         <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#010507] to-transparent" />
       </div>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-[110rem] flex-col justify-between px-6 pb-10 pt-28 sm:px-10 sm:pt-32 lg:px-14 lg:pb-12">
+      <div className="relative z-10 mx-auto flex w-full max-w-[110rem] flex-col justify-between px-6 pb-20 pt-28 sm:px-10 sm:pt-32 lg:px-14 lg:pb-24">
         <div className="max-w-5xl">
           <Meta chapter={chapter} part={part} />
           <div className="mt-10 max-w-5xl">
-            <p className="text-xs tracking-[0.42em] text-cyan-300 uppercase sm:text-sm">{part.title}</p>
-            <h1 className={`mt-5 max-w-5xl font-display leading-[0.92] tracking-[0.035em] text-white [text-shadow:0_18px_55px_rgba(0,0,0,0.8)] ${titleSize}`}>
+            <h1 className="display-2 max-w-[22ch] text-white [text-shadow:0_18px_55px_rgba(0,0,0,0.8)]">
               {chapter.title}
             </h1>
             <Subtitle text={chapter.subtitle} />
-            <p className="mt-7 max-w-2xl text-sm leading-relaxed text-white/75 sm:text-base lg:text-lg">{chapter.summary}</p>
+            <p className="body-lede measure mt-7 text-white/72">{chapter.summary}</p>
             <Bullets items={chapter.bullets ?? []} />
           </div>
         </div>
         <div className="mt-12 flex flex-wrap items-center gap-3">{actions}</div>
       </div>
 
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 flex items-center justify-between border-t border-white/10 px-6 py-3 text-[0.52rem] tracking-[0.28em] text-white/35 uppercase sm:px-10">
-        <span>Documentário científico · Química Orgânica</span>
-        <span>{pad(chapter.number)} / {TOTAL_CHAPTERS}</span>
+      <div className="micro-label pointer-events-none absolute bottom-0 left-0 right-0 z-10 flex items-center justify-between gap-4 border-t border-white/10 px-6 py-3.5 text-white/35 sm:px-10">
+        <span className="truncate">Documentário científico · Química Orgânica</span>
+        <span className="numeral shrink-0">
+          {pad(chapter.number)} / {TOTAL_CHAPTERS}
+        </span>
       </div>
     </section>
   );
