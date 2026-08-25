@@ -1,9 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
 import { Play } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { ChemVisual } from "@/components/chem/ChemVisual";
-import { loadProfiles, type Profile } from "@/lib/profiles";
 import {
   TOTAL_CHAPTERS,
   chapters,
@@ -13,6 +11,13 @@ import {
 } from "@/lib/presentationContent";
 
 type Search = { cap: number };
+
+const presenterByPart: Record<1 | 2 | 3 | 4, string> = {
+  1: "Camila",
+  2: "Lucas",
+  3: "Santhiago",
+  4: "Mylena",
+};
 
 export const Route = createFileRoute("/conteudo")({
   validateSearch: (search: Record<string, unknown>): Search => {
@@ -42,20 +47,13 @@ export const Route = createFileRoute("/conteudo")({
 
 function Catalogo() {
   const { cap } = Route.useSearch();
-  const [profiles, setProfiles] = useState<Profile[]>([]);
 
-  useEffect(() => {
-    setProfiles(loadProfiles());
-  }, []);
-
-  const presenterName = (partNumber: number) =>
-    profiles[partNumber - 1]?.name ?? parts[partNumber - 1]?.presenter ?? "";
+  const presenterName = (partNumber: 1 | 2 | 3 | 4) => presenterByPart[partNumber];
 
   return (
     <div className="paper-grain min-h-svh overflow-x-hidden bg-ink">
       <SiteHeader />
 
-      {/* Hero de catálogo */}
       <section className="relative overflow-hidden border-b border-border">
         <div className="pointer-events-none absolute inset-0 opacity-75">
           <ChemVisual
@@ -101,7 +99,6 @@ function Catalogo() {
       </section>
 
       <main className="mx-auto w-full max-w-[100rem] px-5 pb-20 pt-14 sm:px-10">
-        {/* Fileiras por parte */}
         {parts.map((p) => (
           <section key={p.number} aria-labelledby={`parte-${p.number}`} className="mb-16">
             <div className="flex flex-wrap items-baseline justify-between gap-3">
@@ -160,7 +157,6 @@ function Catalogo() {
           </section>
         ))}
 
-        {/* Fontes */}
         <section aria-labelledby="fontes-title" className="mt-4">
           <h2 id="fontes-title" className="kicker">
             Fontes
@@ -180,7 +176,7 @@ function Catalogo() {
             to="/"
             className="text-[0.62rem] tracking-[0.28em] text-muted-foreground uppercase transition-colors hover:text-foreground"
           >
-            ← Trocar participante
+            ← Voltar à capa
           </Link>
         </div>
         <p className="mt-6 text-[0.6rem] tracking-[0.24em] text-muted-foreground uppercase">
