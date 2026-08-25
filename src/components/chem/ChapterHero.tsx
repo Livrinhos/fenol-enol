@@ -13,6 +13,13 @@ type Props = {
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
+const presenterByPart: Record<PresentationPart["number"], string> = {
+  1: "Camila",
+  2: "Lucas",
+  3: "Santhiago",
+  4: "Mylena",
+};
+
 function Visual({ chapter, part }: { chapter: number; part: 1 | 2 | 3 | 4 }) {
   const scene = sceneForChapter(chapter);
   if (scene) return <MoleculeStage scene={scene} className="h-full w-full" />;
@@ -41,7 +48,7 @@ function Meta({ chapter, part }: { chapter: PresentationChapter; part: Presentat
       <span className="text-white/25" aria-hidden="true">
         ·
       </span>
-      <span className="text-white/55">{part.presenter}</span>
+      <span className="text-white/55">{presenterByPart[part.number]}</span>
     </p>
   );
 }
@@ -71,7 +78,6 @@ function Bullets({ items }: { items: string[] }) {
 
 export function ChapterHero({ chapter, part, actions, mode = "page" }: Props) {
   const minHeight = mode === "present" ? "min-h-[calc(100svh-6rem)]" : "min-h-[calc(100svh-5rem)]";
-
 
   return (
     <section className={`relative isolate overflow-hidden border-b border-white/10 bg-[#020a0d] ${minHeight}`}>
