@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import { loadProfiles, loadSelectedId, type Profile } from "@/lib/profiles";
 
 const NAV = [
-  { label: "Início", to: "/" },
+  { label: "Início", to: "/capa" },
   { label: "Conteúdo", to: "/conteudo" },
 ] as const;
 
@@ -37,7 +37,7 @@ export function SiteHeader() {
     >
       <div className="mx-auto grid w-full max-w-[110rem] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-4 sm:px-8 lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:py-5">
         <Link
-          to="/"
+          to="/capa"
           className="min-w-0 font-display text-[0.8rem] tracking-[0.4em] text-foreground uppercase sm:text-sm"
         >
           Química <span className="text-crimson">Orgânica</span>
