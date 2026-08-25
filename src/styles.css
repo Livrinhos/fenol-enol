@@ -141,9 +141,10 @@
 /* Editorial helpers */
 @utility kicker {
   font-family: var(--font-sans);
-  font-size: 0.625rem;
-  letter-spacing: 0.36em;
-  line-height: 1.2;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  line-height: 1.5;
   text-transform: uppercase;
   color: var(--color-muted-foreground);
 }
