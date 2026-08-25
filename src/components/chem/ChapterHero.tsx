@@ -71,7 +71,7 @@ function Bullets({ items }: { items: string[] }) {
 
 export function ChapterHero({ chapter, part, actions, mode = "page" }: Props) {
   const minHeight = mode === "present" ? "min-h-[calc(100svh-6rem)]" : "min-h-[calc(100svh-5rem)]";
-  const titleSize = mode === "present" ? "text-[2.8rem] sm:text-6xl lg:text-[5.2rem]" : "text-[2.7rem] sm:text-6xl lg:text-[5.4rem]";
+
 
   return (
     <section className={`relative isolate overflow-hidden border-b border-white/10 bg-[#020a0d] ${minHeight}`}>
