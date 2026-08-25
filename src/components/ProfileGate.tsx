@@ -89,12 +89,12 @@ export function ProfileGate({ onSelect }: Props) {
                       className="size-full object-cover opacity-90 transition-all duration-700 group-hover:scale-[1.04] group-hover:opacity-100 group-focus-visible:opacity-100"
                     />
                     {managing && (
-                      <span className="kicker absolute inset-x-0 bottom-0 bg-ink/80 py-2 text-[0.55rem] text-foreground">
+                      <span className="micro-label absolute inset-x-0 bottom-0 bg-ink/85 py-2 text-foreground">
                         Editar
                       </span>
                     )}
                   </span>
-                  <span className="min-w-0 truncate text-sm tracking-[0.18em] text-muted-foreground uppercase transition-colors group-hover:text-foreground">
+                  <span className="micro-label min-w-0 truncate text-muted-foreground transition-colors group-hover:text-foreground">
                     {profile.name}
                   </span>
                 </button>
@@ -116,7 +116,7 @@ export function ProfileGate({ onSelect }: Props) {
           </button>
 
           {selectedId && !managing && (
-            <p className="text-xs tracking-[0.2em] text-muted-foreground uppercase">
+            <p className="micro-label text-muted-foreground">
               Perfil selecionado: {profiles.find((p) => p.id === selectedId)?.name}
             </p>
           )}
@@ -206,24 +206,24 @@ function EditProfileDialog({
         className="max-h-full w-full max-w-lg overflow-y-auto border border-border bg-surface p-6 sm:p-8"
       >
         <p className="kicker">Gerenciar perfil</p>
-        <h2 id="edit-profile-title" className="mt-3 font-display text-2xl tracking-[0.14em] text-foreground">EDITAR PERFIL</h2>
+        <h2 id="edit-profile-title" className="display-3 mt-3 text-foreground">EDITAR PERFIL</h2>
         <div className="hairline my-6" />
 
         <div className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-5">
           <img src={image} alt="Pré-visualização da imagem do perfil" width={112} height={112} className="size-24 shrink-0 border border-border object-cover sm:size-28" />
           <div className="min-w-0 space-y-4">
             <div>
-              <label htmlFor="profile-name" className="kicker mb-2 block text-[0.6rem]">Nome</label>
+              <label htmlFor="profile-name" className="micro-label mb-2 block text-muted-foreground">Nome</label>
               <input id="profile-name" ref={nameRef} value={name} onChange={(e) => setName(e.target.value)} maxLength={24} className="w-full border border-input bg-elevated px-3 py-2 text-sm tracking-[0.1em] text-foreground placeholder:text-muted-foreground" placeholder="Nome do participante" />
             </div>
             <div>
-              <label htmlFor="profile-image" className="kicker mb-2 block text-[0.6rem]">Imagem</label>
+              <label htmlFor="profile-image" className="micro-label mb-2 block text-muted-foreground">Imagem</label>
               <input id="profile-image" type="file" accept="image/*" onChange={(e) => onFile(e.target.files?.[0])} className="w-full text-xs text-muted-foreground file:mr-3 file:border file:border-border file:bg-elevated file:px-3 file:py-2 file:text-[0.6rem] file:tracking-[0.2em] file:text-foreground file:uppercase" />
             </div>
           </div>
         </div>
 
-        {error && <p role="alert" className="mt-4 text-xs tracking-wide text-destructive">{error}</p>}
+        {error && <p role="alert" className="mt-4 text-[0.8rem] leading-relaxed tracking-[0.02em] text-destructive">{error}</p>}
 
         <div className="mt-8 flex flex-wrap justify-end gap-3">
           <button type="button" onClick={onCancel} className="kicker border border-border px-5 py-3 transition-colors hover:text-foreground">Cancelar</button>
