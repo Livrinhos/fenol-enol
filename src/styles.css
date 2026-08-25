@@ -555,3 +555,119 @@
   color: transparent;
   -webkit-text-stroke: 1px color-mix(in oklab, var(--color-foreground) 14%, transparent);
 }
+
+/* ────────────────────────────────────────────────────────────
+   Sistema tipográfico editorial/documental
+   Escala fluida, medidas de leitura e hierarquia consistente
+   ──────────────────────────────────────────────────────────── */
+
+/* metadados / olho de página (EP. XX, parte, presenter) */
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: clamp(0.6rem, 0.52rem + 0.22vw, 0.72rem);
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+/* micro-label: legendas de rodapé, tags */
+@utility micro-label {
+  font-family: var(--font-sans);
+  font-size: clamp(0.62rem, 0.56rem + 0.14vw, 0.7rem);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+/* títulos cinematográficos */
+@utility display-1 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 1.6rem + 6.4vw, 7.5rem);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+@utility display-2 {
+  font-family: var(--font-display);
+  font-size: clamp(2.35rem, 1.35rem + 4.2vw, 5rem);
+  font-weight: 500;
+  line-height: 0.96;
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+}
+
+@utility display-3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 1.15rem + 1.5vw, 2.35rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: 0.005em;
+  text-wrap: balance;
+}
+
+/* subtítulo: complementa sem competir */
+@utility subtitle-line {
+  font-family: var(--font-sans);
+  font-size: clamp(0.68rem, 0.6rem + 0.3vw, 0.85rem);
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+/* corpo de leitura */
+@utility body-lede {
+  font-family: var(--font-sans);
+  font-size: clamp(0.95rem, 0.88rem + 0.4vw, 1.125rem);
+  font-weight: 300;
+  line-height: 1.72;
+  letter-spacing: 0.002em;
+  text-wrap: pretty;
+}
+
+@utility body-text {
+  font-family: var(--font-sans);
+  font-size: clamp(0.875rem, 0.83rem + 0.2vw, 0.98rem);
+  font-weight: 300;
+  line-height: 1.75;
+  text-wrap: pretty;
+}
+
+/* medidas de leitura */
+@utility measure {
+  max-width: 62ch;
+}
+@utility measure-narrow {
+  max-width: 46ch;
+}
+@utility measure-wide {
+  max-width: 74ch;
+}
+
+/* bullets como parte da composição */
+@utility bullet-item {
+  font-family: var(--font-sans);
+  font-size: clamp(0.72rem, 0.68rem + 0.16vw, 0.82rem);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1.55;
+  text-transform: uppercase;
+}
+
+/* números editoriais alinhados */
+@utility numeral {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  letter-spacing: 0.01em;
+}
+
+@utility text-balance-title {
+  text-wrap: balance;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
