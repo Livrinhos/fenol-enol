@@ -9,65 +9,9 @@ export type Profile = {
   image: string;
 };
 
-export const PROFILES_KEY = "quimica-organica:profiles";
-export const SELECTED_KEY = "quimica-organica:selected-profile";
-export const INTRO_KEY = "quimica-organica:intro-seen";
-
 export const defaultProfiles: Profile[] = [
   { id: "p1", name: "Camila", image: avatar2 },
   { id: "p2", name: "Lucas", image: avatar1 },
   { id: "p3", name: "Santhiago", image: avatar4 },
   { id: "p4", name: "Mylena", image: avatar3 },
 ];
-
-const legacyNames = new Set(["Henrique", "Integrante 2", "Integrante 3", "Integrante 4"]);
-
-export function loadProfiles(): Profile[] {
-  if (typeof window === "undefined") return defaultProfiles;
-  try {
-    const raw = window.localStorage.getItem(PROFILES_KEY);
-    if (!raw) return defaultProfiles;
-    const parsed = JSON.parse(raw) as Profile[];
-    if (!Array.isArray(parsed) || parsed.length === 0) return defaultProfiles;
-
-    const profiles = defaultProfiles.map((fallback) => {
-      const found = parsed.find((p) => p?.id === fallback.id);
-      if (!found) return fallback;
-      return {
-        id: fallback.id,
-        name: !found.name || legacyNames.has(found.name) ? fallback.name : found.name,
-        image: found.image || fallback.image,
-      };
-    });
-
-    window.localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
-    return profiles;
-  } catch {
-    return defaultProfiles;
-  }
-}
-
-export function saveProfiles(profiles: Profile[]) {
-  try {
-    window.localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
-  } catch {
-    /* storage unavailable */
-  }
-}
-
-export function loadSelectedId(): string | null {
-  if (typeof window === "undefined") return null;
-  try {
-    return window.localStorage.getItem(SELECTED_KEY);
-  } catch {
-    return null;
-  }
-}
-
-export function saveSelectedId(id: string) {
-  try {
-    window.localStorage.setItem(SELECTED_KEY, id);
-  } catch {
-    /* storage unavailable */
-  }
-}
