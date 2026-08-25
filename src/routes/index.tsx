@@ -107,7 +107,7 @@ function Cover({ profile }: { profile: Profile }) {
         </div>
       </section>
 
-      <footer className="absolute inset-x-0 bottom-0 z-20 flex items-center justify-between px-6 pb-5 text-[0.5rem] tracking-[0.28em] text-white/28 uppercase sm:px-10 lg:px-16">
+      <footer className="micro-label absolute inset-x-0 bottom-0 z-20 flex items-center justify-between gap-4 px-6 pb-5 text-white/35 sm:px-10 lg:px-16">
         <span>FENOL &amp; ENOL · EXPERIÊNCIA CIENTÍFICA INTERATIVA</span>
         <span>CAPA</span>
       </footer>
