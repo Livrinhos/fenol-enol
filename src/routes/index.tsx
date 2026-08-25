@@ -58,43 +58,49 @@ function Cover({ profile }: { profile: Profile }) {
       <section className={`relative z-10 flex min-h-svh items-center px-6 pb-14 pt-28 transition-all duration-1000 sm:px-10 lg:px-16 ${visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}>
         <div className="mx-auto w-full max-w-[110rem]">
           <div className="max-w-4xl">
-            <div className="flex items-center gap-3 text-[0.57rem] tracking-[0.42em] text-cyan-200/70 uppercase sm:text-xs">
+            <div className="eyebrow flex flex-wrap items-center gap-x-3 gap-y-1 text-cyan-200/80">
               <span>Química Orgânica · Documentário científico · 20 episódios</span>
-              <span className="text-white/20">·</span>
-              <span>{profile.name}</span>
+              <span className="text-white/25" aria-hidden="true">
+                ·
+              </span>
+              <span className="text-white/60">{profile.name}</span>
             </div>
 
-            <h1 className="mt-7 font-display text-[4rem] leading-[0.86] tracking-[0.02em] text-white sm:text-[6rem] lg:text-[8rem]">
+            <h1 className="display-1 mt-8 text-white">
               FENOL
               <br />
               <span className="text-cyan-200">&amp; ENOL</span>
             </h1>
 
-            <div className="mt-7 h-px w-28 bg-cyan-300/70" />
+            <div className="mt-8 h-px w-28 bg-cyan-300/70" />
 
-            <p className="mt-7 max-w-2xl font-display text-xl leading-relaxed tracking-[0.11em] text-white/72 sm:text-2xl lg:text-3xl">
-              Uma exploração visual da Química Orgânica.
+            <p className="subtitle-line measure-narrow mt-8 text-cyan-100/85">
+              Uma exploração visual da Química Orgânica
             </p>
-            <p className="mt-5 max-w-2xl text-sm leading-relaxed text-white/52 sm:text-base">
+            <p className="body-lede measure mt-5 text-white/60">
               Conceitos, classificação, grupos funcionais, fenol, enol e suas aplicações.
             </p>
 
             <button
               type="button"
               onClick={() => void navigate({ to: "/apresentar/$n", params: { n: "1" } })}
-              className="mt-10 inline-flex items-center gap-4 border border-cyan-300/80 bg-cyan-300/10 px-7 py-4 text-sm font-medium tracking-[0.28em] text-white uppercase shadow-[0_0_55px_rgba(14,190,220,0.07)] transition hover:bg-cyan-300/18 hover:shadow-[0_0_65px_rgba(14,190,220,0.12)]"
+              className="micro-label mt-11 inline-flex items-center gap-4 border border-cyan-300/80 bg-cyan-300/10 px-7 py-4 text-white shadow-[0_0_55px_rgba(14,190,220,0.07)] transition hover:bg-cyan-300/18 hover:shadow-[0_0_65px_rgba(14,190,220,0.12)]"
             >
-              <span className="grid size-9 place-items-center rounded-full border border-cyan-300/70 text-cyan-200">
+              <span className="grid size-9 shrink-0 place-items-center rounded-full border border-cyan-300/70 text-cyan-200">
                 <Play className="size-4 fill-current" aria-hidden="true" />
               </span>
               Iniciar apresentação
             </button>
 
-            <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 text-[0.55rem] tracking-[0.28em] text-white/38 uppercase sm:text-xs">
+            <div className="micro-label mt-9 flex flex-wrap items-center gap-x-6 gap-y-2 text-white/45">
               <span>20 episódios</span>
-              <span className="text-cyan-300/60">●</span>
+              <span className="text-cyan-300/60" aria-hidden="true">
+                ●
+              </span>
               <span>4 partes</span>
-              <span className="text-cyan-300/60">●</span>
+              <span className="text-cyan-300/60" aria-hidden="true">
+                ●
+              </span>
               <span>Apresentando: {profile.name}</span>
             </div>
           </div>
