@@ -20,6 +20,8 @@ export const defaultProfiles: Profile[] = [
   { id: "p4", name: "Mylena", image: avatar3 },
 ];
 
+const legacyNames = new Set(["Henrique", "Integrante 2", "Integrante 3", "Integrante 4"]);
+
 export function loadProfiles(): Profile[] {
   if (typeof window === "undefined") return defaultProfiles;
   try {
@@ -27,16 +29,19 @@ export function loadProfiles(): Profile[] {
     if (!raw) return defaultProfiles;
     const parsed = JSON.parse(raw) as Profile[];
     if (!Array.isArray(parsed) || parsed.length === 0) return defaultProfiles;
-    return defaultProfiles.map((fallback) => {
+
+    const profiles = defaultProfiles.map((fallback) => {
       const found = parsed.find((p) => p?.id === fallback.id);
-      return found
-        ? {
-            id: fallback.id,
-            name: found.name || fallback.name,
-            image: found.image || fallback.image,
-          }
-        : fallback;
+      if (!found) return fallback;
+      return {
+        id: fallback.id,
+        name: !found.name || legacyNames.has(found.name) ? fallback.name : found.name,
+        image: found.image || fallback.image,
+      };
     });
+
+    window.localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles));
+    return profiles;
   } catch {
     return defaultProfiles;
   }
