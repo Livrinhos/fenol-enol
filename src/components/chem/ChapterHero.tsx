@@ -28,17 +28,29 @@ function Visual({ chapter, part }: { chapter: number; part: 1 | 2 | 3 | 4 }) {
 
 function Meta({ chapter, part }: { chapter: PresentationChapter; part: PresentationPart }) {
   return (
-    <p className="font-mono text-[0.58rem] tracking-[0.34em] text-cyan-200/70 uppercase sm:text-[0.65rem]">
-      EP. {pad(chapter.number)} / {TOTAL_CHAPTERS} · PARTE {part.number} — {part.title} · {part.presenter}
+    <p className="eyebrow flex flex-wrap items-center gap-x-2 gap-y-1 text-cyan-200/75">
+      <span className="numeral text-cyan-200">
+        EP. {pad(chapter.number)} / {TOTAL_CHAPTERS}
+      </span>
+      <span className="text-white/25" aria-hidden="true">
+        ·
+      </span>
+      <span className="text-white/55">
+        PARTE {part.number} — {part.title}
+      </span>
+      <span className="text-white/25" aria-hidden="true">
+        ·
+      </span>
+      <span className="text-white/55">{part.presenter}</span>
     </p>
   );
 }
 
 function Subtitle({ text }: { text: string }) {
   return (
-    <div className="mt-6 flex items-center gap-3">
-      <span className="h-px w-10 bg-cyan-300/70" />
-      <p className="text-[0.62rem] tracking-[0.3em] text-cyan-200/80 uppercase sm:text-xs">{text}</p>
+    <div className="mt-7 flex items-baseline gap-3">
+      <span className="mt-2 h-px w-10 shrink-0 translate-y-[-0.35em] bg-cyan-300/70" aria-hidden="true" />
+      <p className="subtitle-line measure text-cyan-100/85">{text}</p>
     </div>
   );
 }
@@ -46,11 +58,11 @@ function Subtitle({ text }: { text: string }) {
 function Bullets({ items }: { items: string[] }) {
   if (!items.length) return null;
   return (
-    <ul className="mt-8 flex flex-wrap gap-x-7 gap-y-3">
+    <ul className="mt-9 flex flex-wrap gap-x-8 gap-y-3.5">
       {items.map((item) => (
-        <li key={item} className="flex items-center gap-2 text-[0.62rem] tracking-[0.13em] text-white/55 uppercase">
-          <span className="size-1 rounded-full bg-cyan-300" aria-hidden="true" />
-          {item}
+        <li key={item} className="bullet-item flex items-baseline gap-2.5 text-white/60">
+          <span className="mt-[0.45em] size-1 shrink-0 rounded-full bg-cyan-300" aria-hidden="true" />
+          <span>{item}</span>
         </li>
       ))}
     </ul>
