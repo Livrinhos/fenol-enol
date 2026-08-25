@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
-import { loadProfiles, loadSelectedId, type Profile } from "@/lib/profiles";
+import { defaultProfiles, type Profile } from "@/lib/profiles";
 
 const NAV = [
   { label: "Início", to: "/capa" },
@@ -11,13 +11,7 @@ const NAV = [
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [profile, setProfile] = useState<Profile | null>(null);
-
-  useEffect(() => {
-    const profiles = loadProfiles();
-    const id = loadSelectedId();
-    setProfile(profiles.find((p) => p.id === id) ?? profiles[0] ?? null);
-  }, []);
+  const [profile] = useState<Profile | null>(defaultProfiles[0] ?? null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -36,10 +30,7 @@ export function SiteHeader() {
       style={{ paddingTop: "env(safe-area-inset-top)" }}
     >
       <div className="mx-auto grid w-full max-w-[110rem] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-4 sm:px-8 lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:py-5">
-        <Link
-          to="/capa"
-          className="min-w-0 font-display text-[0.8rem] tracking-[0.4em] text-foreground uppercase sm:text-sm"
-        >
+        <Link to="/capa" className="min-w-0 font-display text-[0.8rem] tracking-[0.4em] text-foreground uppercase sm:text-sm">
           Química <span className="text-crimson">Orgânica</span>
         </Link>
 
@@ -60,52 +51,23 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-4 sm:gap-6">
-          <Link
-            to="/"
-            className="group flex items-center gap-3"
-            aria-label={`Perfil ativo: ${profile?.name ?? "selecionar"}`}
-          >
-            {profile && (
-              <img
-                src={profile.image}
-                alt=""
-                width={32}
-                height={32}
-                className="size-7 shrink-0 object-cover opacity-90 transition-opacity duration-500 group-hover:opacity-100 motion-reduce:transition-none"
-              />
-            )}
-            <span className="hidden text-[0.6rem] tracking-[0.3em] text-muted-foreground uppercase transition-colors duration-300 group-hover:text-foreground xl:inline">
-              Perfil
-            </span>
+          <Link to="/" className="group flex items-center gap-3" aria-label={`Perfil: ${profile?.name ?? "selecionar"}`}>
+            {profile && <img src={profile.image} alt="" width={32} height={32} className="size-7 shrink-0 object-cover opacity-90 transition-opacity duration-500 group-hover:opacity-100 motion-reduce:transition-none" />}
+            <span className="hidden text-[0.6rem] tracking-[0.3em] text-muted-foreground uppercase transition-colors duration-300 group-hover:text-foreground xl:inline">Perfil</span>
           </Link>
 
-          <button
-            type="button"
-            onClick={() => setOpen((o) => !o)}
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            aria-label={open ? "Fechar menu" : "Abrir menu"}
-            className="p-1 text-foreground lg:hidden"
-          >
+          <button type="button" onClick={() => setOpen((o) => !o)} aria-expanded={open} aria-controls="mobile-nav" aria-label={open ? "Fechar menu" : "Abrir menu"} className="p-1 text-foreground lg:hidden">
             {open ? <X className="size-5" aria-hidden="true" /> : <Menu className="size-5" aria-hidden="true" />}
           </button>
         </div>
       </div>
 
       {open && (
-        <nav
-          id="mobile-nav"
-          aria-label="Navegação móvel"
-          className="border-t border-border bg-ink/97 px-5 pb-8 pt-4 sm:px-8 lg:hidden"
-        >
+        <nav id="mobile-nav" aria-label="Navegação móvel" className="border-t border-border bg-ink/97 px-5 pb-8 pt-4 sm:px-8 lg:hidden">
           <ul className="flex flex-col">
             {NAV.map((item) => (
               <li key={item.label} className="border-b border-border/60 last:border-0">
-                <Link
-                  to={item.to}
-                  onClick={() => setOpen(false)}
-                  className="block py-4 text-xs tracking-[0.3em] text-muted-foreground uppercase transition-colors hover:text-foreground"
-                >
+                <Link to={item.to} onClick={() => setOpen(false)} className="block py-4 text-xs tracking-[0.3em] text-muted-foreground uppercase transition-colors hover:text-foreground">
                   {item.label}
                 </Link>
               </li>
