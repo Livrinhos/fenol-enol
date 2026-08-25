@@ -14,10 +14,10 @@ export const SELECTED_KEY = "quimica-organica:selected-profile";
 export const INTRO_KEY = "quimica-organica:intro-seen";
 
 export const defaultProfiles: Profile[] = [
-  { id: "p1", name: "Lucas", image: avatar1 },
-  { id: "p2", name: "Camila", image: avatar2 },
-  { id: "p3", name: "Mylena", image: avatar3 },
-  { id: "p4", name: "Santhiago", image: avatar4 },
+  { id: "p1", name: "Camila", image: avatar2 },
+  { id: "p2", name: "Lucas", image: avatar1 },
+  { id: "p3", name: "Santhiago", image: avatar4 },
+  { id: "p4", name: "Mylena", image: avatar3 },
 ];
 
 export function loadProfiles(): Profile[] {
