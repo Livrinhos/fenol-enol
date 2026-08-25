@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 import { loadProfiles, loadSelectedId, type Profile } from "@/lib/profiles";
 
 const NAV = [
-  { label: "Início", to: "/" },
+  { label: "Início", to: "/apresentar/$n", params: { n: "1" } },
   { label: "Conteúdo", to: "/conteudo" },
 ] as const;
 
@@ -49,6 +49,7 @@ export function SiteHeader() {
               <li key={item.label}>
                 <Link
                   to={item.to}
+                  params={"params" in item ? item.params : undefined}
                   search={{ cap: 1 } as never}
                   className="border-b border-transparent pb-1 text-[0.62rem] tracking-[0.3em] text-muted-foreground uppercase transition-colors duration-300 hover:text-foreground motion-reduce:transition-none"
                   activeProps={{ className: "text-foreground border-crimson" }}
@@ -108,6 +109,7 @@ export function SiteHeader() {
               <li key={item.label} className="border-b border-border/60 last:border-0">
                 <Link
                   to={item.to}
+                  params={"params" in item ? item.params : undefined}
                   search={{ cap: 1 } as never}
                   onClick={() => setOpen(false)}
                   className="block py-4 text-xs tracking-[0.3em] text-muted-foreground uppercase transition-colors hover:text-foreground"
